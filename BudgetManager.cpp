@@ -9,3 +9,9 @@ void BudgetManager::registerUser(){
 
 }
 
+void BudgetManager::showAllUsers(){
+
+    userManager.showAllUsers();
+
+}
+

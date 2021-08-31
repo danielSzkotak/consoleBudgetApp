@@ -16,6 +16,7 @@ class BudgetManager {
 
         //virtual ~BudgetManager();
         void registerUser();
+        void showAllUsers();
 
 };
 
