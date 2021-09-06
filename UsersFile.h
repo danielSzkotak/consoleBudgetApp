@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include "XmlFile.h"
+#include "User.h"
 
 using namespace std;
 
@@ -12,6 +13,8 @@ class UsersFile : public XmlFile
 {
     public:
         UsersFile(string fileName) : XmlFile(fileName){};
+        void addUserToFile(User user);
+        vector<User> getUsersFromFile();
 
 
 };

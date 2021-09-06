@@ -12,7 +12,7 @@ class BudgetManager {
     UserManager userManager;
 
     public:
-        BudgetManager();
+        BudgetManager(string usersFileName) : userManager(usersFileName) {};
 
         //virtual ~BudgetManager();
         void registerUser();

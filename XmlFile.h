@@ -2,6 +2,7 @@
 #define XMLFILE_H
 
 #include "Markup.h"
+#include "User.h"
 
 #include <iostream>
 
@@ -13,8 +14,9 @@ class XmlFile
     const string FILE_NAME;
 
     public:
-        XmlFile(string fileName) : FILE_NAME(fileName) {};
         CMarkup xmlManager;
+        XmlFile(string fileName) : FILE_NAME(fileName) {}
+
         string getFileName();
         bool ifFileExists();
 

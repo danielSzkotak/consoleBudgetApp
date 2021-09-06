@@ -5,13 +5,10 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
 
-    BudgetManager budgetManager;
-
+    BudgetManager budgetManager("users.xml");
     budgetManager.registerUser();
-    budgetManager.registerUser();
-    budgetManager.showAllUsers();
+    //budgetManager.showAllUsers();
 
     return 0;
 }

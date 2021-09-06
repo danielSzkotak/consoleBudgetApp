@@ -1,13 +1,13 @@
 #include "UserManager.h"
+#include "UsersFile.h"
 
-UserManager::UserManager(){}
 
 void UserManager::registerUser(){
 
 
     User user = provideNewUserData();
     users.push_back(user);
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    usersFile.addUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
@@ -27,12 +27,18 @@ bool UserManager::ifLoginExists(string login){
     return false;
 }
 
+int UserManager::getNewUserId(){
+
+    if (users.empty() == true)
+        return 1;
+    else
+        return users.back().getUserId() + 1;
+}
+
 User UserManager::provideNewUserData(){
 
     User user;
-    user.setUserId(1);
-    //uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
-
+    user.setUserId(getNewUserId());
     string login;
 
     do
@@ -70,6 +76,6 @@ void UserManager::showAllUsers(){
         cout << users[i].getLogin() << endl;
         cout << users[i].getPassword() << endl;
         cout << users[i].getName() << endl;
-        cout << users[i].getSurname() << endl;
+        cout << users[i].getSurname() << endl << endl;
     }
 }
