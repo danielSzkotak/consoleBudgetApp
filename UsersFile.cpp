@@ -1,6 +1,7 @@
 #include "UsersFile.h"
 #include <vector>
 
+
 void UsersFile::addUserToFile(User user){
 
     xmlManager.Load(getFileName());
@@ -28,7 +29,6 @@ vector<User> UsersFile::getUsersFromFile(){
 
     if (ifFileExists())
     {
-
         xmlManager.Load(getFileName());
         xmlManager.FindElem("USERS");
         xmlManager.IntoElem();
@@ -53,4 +53,33 @@ vector<User> UsersFile::getUsersFromFile(){
         return users;
     }
     else return users;
+}
+
+string UsersFile::intToString(int number) {
+
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+void UsersFile::saveNewPasswordToFile(string newPassword, int loggedUserId){
+
+    xmlManager.ResetPos();
+    if (ifFileExists()) {
+
+        xmlManager.FindElem();
+        xmlManager.IntoElem();
+        while (xmlManager.FindElem("USER")) {
+
+            xmlManager.FindChildElem("userId");
+            if (xmlManager.GetChildData() == intToString(loggedUserId)) {
+
+                xmlManager.FindChildElem("password");
+                xmlManager.SetChildData(newPassword);
+            }
+        }
+    }
+    xmlManager.Save(getFileName());
+
 }

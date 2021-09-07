@@ -8,6 +8,17 @@ void BudgetManager::registerUser(){
 
 }
 
+void BudgetManager::logInUser(){
+
+    userManager.logInUser();
+
+}
+
+void BudgetManager::changeUserPassword(){
+
+    userManager.changeUserPassword();
+}
+
 void BudgetManager::showAllUsers(){
 
     userManager.showAllUsers();

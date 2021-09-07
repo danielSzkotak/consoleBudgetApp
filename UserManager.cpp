@@ -79,3 +79,79 @@ void UserManager::showAllUsers(){
         cout << users[i].getSurname() << endl << endl;
     }
 }
+
+int UserManager::logInUser(){
+
+    string login = "", passwd = "";
+
+    cout << "Podaj login: ";
+    cin >> login;
+
+    for (int i = 0; i < users.size(); i++) {
+
+        if (users[i].getLogin() == login) {
+
+            for (int numberOfAttempts = 3; numberOfAttempts > 0; numberOfAttempts--)
+            {
+                cout << "Podaj haslo. Pozostalo prob: " << numberOfAttempts << ": ";
+                cin >> passwd; //passwd = MetodyPomocnicze::wczytajLinie();
+
+                if (users[i].getPassword() == passwd)
+                {
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    return loggedUserId = users[i].getUserId();
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return 0;
+
+        }
+    }
+
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    return 0;
+}
+
+int UserManager::getLoggedInUserId(){
+
+    return loggedUserId;
+}
+
+bool UserManager::ifUserIsLoggedIn(){
+
+    if (loggedUserId != 0)
+        return true;
+    else
+        return false;
+}
+
+void UserManager::changeUserPassword(){
+
+    string newPassword = "";
+    cout << " >>> ZMIANA HASLA <<<" << endl << endl;
+    cout << "Podaj nowe haslo: ";
+    cin >> newPassword;
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr->getUserId() == loggedUserId)
+        {
+            itr->setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    usersFile.saveNewPasswordToFile(newPassword, loggedUserId);
+    //plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+
+}
+
+void UserManager::logOutUser(){
+
+    loggedUserId = 0;
+    cout << "Wylogowales sie" << endl << endl;
+    system("pause");
+}

@@ -7,7 +7,9 @@ int main()
 {
 
     BudgetManager budgetManager("users.xml");
-    budgetManager.registerUser();
+    //budgetManager.registerUser();
+    budgetManager.logInUser();
+    budgetManager.changeUserPassword();
     //budgetManager.showAllUsers();
 
     return 0;

@@ -6,6 +6,7 @@
 #include "User.h"
 #include "UsersFile.h"
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -13,6 +14,8 @@ class UserManager
 {
     vector <User> users;
     UsersFile usersFile;
+    int loggedUserId;
+
     User provideNewUserData();
     bool ifLoginExists(string login);
     int getNewUserId();
@@ -21,9 +24,15 @@ class UserManager
         UserManager(string usersFileName) : usersFile(usersFileName) {
 
             users = usersFile.getUsersFromFile();
+            loggedUserId = 0;
         };
-        //virtual ~UserManager();
+
         void registerUser();
+        int logInUser();
+        int getLoggedInUserId();
+        bool ifUserIsLoggedIn();
+        void changeUserPassword();
+        void logOutUser();
         void showAllUsers();
 
 };
