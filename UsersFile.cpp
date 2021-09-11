@@ -1,5 +1,6 @@
 #include "UsersFile.h"
 #include <vector>
+#include "AuxiliaryMethods.h"
 
 
 void UsersFile::addUserToFile(User user){
@@ -55,13 +56,6 @@ vector<User> UsersFile::getUsersFromFile(){
     else return users;
 }
 
-string UsersFile::intToString(int number) {
-
-    ostringstream ss;
-    ss << number;
-    string str = ss.str();
-    return str;
-}
 
 void UsersFile::saveNewPasswordToFile(string newPassword, int loggedUserId){
 
@@ -73,7 +67,7 @@ void UsersFile::saveNewPasswordToFile(string newPassword, int loggedUserId){
         while (xmlManager.FindElem("USER")) {
 
             xmlManager.FindChildElem("userId");
-            if (xmlManager.GetChildData() == intToString(loggedUserId)) {
+            if (xmlManager.GetChildData() == AuxiliaryMethods::intToString(loggedUserId)) {
 
                 xmlManager.FindChildElem("password");
                 xmlManager.SetChildData(newPassword);
