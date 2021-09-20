@@ -16,7 +16,7 @@ string AuxiliaryMethods::intToString(int number) {
 
 string AuxiliaryMethods::readLine()
 {
-    cin.ignore();
+    cin.clear();
     string input = "";
     getline(cin, input);
     return input;
@@ -64,6 +64,27 @@ int AuxiliaryMethods::stringToInt(string number){
     iss >> input;
 
     return input;
+}
+
+char AuxiliaryMethods::readCharacter()
+{
+    string input = "";
+    char character = { 0 };
+    cin.ignore();
+
+    while (true)
+    {
+
+        getline(cin, input);
+
+        if (input.length() == 1)
+        {
+            character = input[0];
+            break;
+        }
+        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+    }
+    return character;
 }
 
 

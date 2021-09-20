@@ -17,6 +17,7 @@ class AuxiliaryMethods
         static string doubleToString(double number);
         static double stringToDouble(string number);
         static int stringToInt(string number);
+        static char readCharacter();
 
 };
 

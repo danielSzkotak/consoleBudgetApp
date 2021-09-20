@@ -1,6 +1,7 @@
 #ifndef DATE_H
 #define DATE_H
 #include <iostream>
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ class Date
 
         bool isDateValidFormat(string date);
         string getCurrentDate();
+        string getSelectedDate();
         string getDateWithFirstDayOfCurrentMonth();
         string getDateWithLastDayOfCurrentMonth();
         string getDateWithFisrtDayOfPreviousMonth();

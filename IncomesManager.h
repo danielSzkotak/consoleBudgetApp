@@ -20,6 +20,7 @@ class IncomesManager
     double totalIncomesAmount;
     Income provideNewIncomeData();
     void sortIncomesByDate();
+    char selectDate();
     Date date;
 
     public:

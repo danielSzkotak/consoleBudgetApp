@@ -50,6 +50,24 @@ string Date::getCurrentDate(){
     return s;
 }
 
+string Date::getSelectedDate(){
+
+    string inputDate="";
+    cout << "Wprowadz date przychodu w formacie RRRR-MM-DD (od 2001): ";
+    while (true)
+    {
+        inputDate = AuxiliaryMethods::readLine();
+        if (isDateValidFormat(inputDate))
+        {
+            return inputDate;
+        }
+        else
+        {
+            cout << endl << "Wprowadzono nieprawidlowa date, sprobuj jeszcze raz: ";
+        }
+    }
+}
+
 string Date::getDateWithFirstDayOfCurrentMonth(){
 
     return getCurrentDate().replace(8,2,"01");
