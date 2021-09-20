@@ -6,12 +6,12 @@ using namespace std;
 int main()
 {
 
-    BudgetManager budgetManager("users.xml", "incomes.xml");
+    BudgetManager budgetManager("users.xml", "incomes.xml", "expenses.xml");
     //budgetManager.registerUser();
     budgetManager.logInUser();
-    budgetManager.addIncome();
     //budgetManager.addIncome();
-
+    budgetManager.addExpense();
+    budgetManager.addExpense();
 
     return 0;
 }

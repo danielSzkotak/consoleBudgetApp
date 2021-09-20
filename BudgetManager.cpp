@@ -14,6 +14,7 @@ void BudgetManager::logInUser(){
     if (userManager.ifUserIsLoggedIn()){
 
         incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId() );
+        expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId() );
     }
 
 }
@@ -32,5 +33,11 @@ void BudgetManager::showAllUsers(){
 void BudgetManager::addIncome(){
 
     incomesManager ->addIncome();
+}
+
+
+void BudgetManager::addExpense(){
+
+    expensesManager ->addExpense();
 }
 
