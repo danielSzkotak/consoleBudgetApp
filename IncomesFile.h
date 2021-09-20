@@ -6,6 +6,8 @@
 #include "XmlFile.h"
 #include "Income.h"
 #include <string>
+#include "AuxiliaryMethods.h"
+
 
 
 using namespace std;
@@ -23,7 +25,7 @@ class IncomesFile : public XmlFile
 
         int getLastIncomeId();
         vector<Income> loadLoggedUserIncomesFromFile(int loggedUserId);
-        void addIncomeToFile();
+        bool addIncomeToFile(Income income);
 
 };
 

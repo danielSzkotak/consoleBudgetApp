@@ -9,18 +9,18 @@ class Transaction
 {
     int userId;
     string date;
-    string type;
+    string item;
     double amount;
 
     public:
         Transaction();
         void setUserId(int id);
         void setDate(string newDate);
-        void setType(string newType);
+        void setItem(string newItem);
         void setAmount(double newAmount);
         int getUserId();
         string getDate();
-        string getType();
+        string getItem();
         double getAmount();
 
 };

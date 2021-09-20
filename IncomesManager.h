@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include "Income.h"
 #include "IncomesFile.h"
+#include "Date.h"
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
@@ -18,12 +20,13 @@ class IncomesManager
     double totalIncomesAmount;
     Income provideNewIncomeData();
     void sortIncomesByDate();
+    Date date;
 
     public:
         IncomesManager(string incomesFileName, int loggedUserId) :
             incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserId)
             {
-                //incomes = incomesFile.loadLoggedUserIncomesFromFile(LOGGED_USER_ID);
+                incomes = incomesFile.loadLoggedUserIncomesFromFile(LOGGED_USER_ID);
             };
 
         void addIncome();

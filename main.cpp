@@ -10,6 +10,7 @@ int main()
     //budgetManager.registerUser();
     budgetManager.logInUser();
     budgetManager.addIncome();
+    //budgetManager.addIncome();
 
 
     return 0;

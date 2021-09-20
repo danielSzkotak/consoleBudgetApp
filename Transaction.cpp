@@ -15,9 +15,9 @@ void Transaction::setDate(string newDate){
     date = newDate;
 }
 
-void Transaction::setType(string newType){
+void Transaction::setItem(string newItem){
 
-    type = newType;
+    item = newItem;
 }
 
 void Transaction::setAmount(double newAmount){
@@ -33,8 +33,8 @@ string Transaction::getDate(){
     return date;
 }
 
-string Transaction::getType(){
-    return date;
+string Transaction::getItem(){
+    return item;
 }
 
 double Transaction::getAmount(){
