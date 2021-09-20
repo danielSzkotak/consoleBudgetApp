@@ -14,7 +14,6 @@ using namespace std;
 class UsersFile : public XmlFile
 {
 
-
     public:
         UsersFile(string fileName) : XmlFile(fileName){};
         void addUserToFile(User user);
