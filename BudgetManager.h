@@ -39,6 +39,7 @@ class BudgetManager {
         void showAllUsers();
         void addIncome();
         void addExpense();
+        void showCurrentMonthBalance();
 
 };
 

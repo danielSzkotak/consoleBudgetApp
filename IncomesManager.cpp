@@ -1,4 +1,5 @@
 #include "IncomesManager.h"
+#include <algorithm>
 
 
 Income IncomesManager::provideNewIncomeData(){
@@ -18,8 +19,6 @@ Income IncomesManager::provideNewIncomeData(){
     case '2': income.setDate(date.getSelectedDate());
          break;
     }
-
-    //income.setDate(date.getCurrentDate());
 
     cout << "Podaj rodzaj przychodu: ";
     income.setItem(AuxiliaryMethods::readLine());
@@ -68,7 +67,32 @@ char IncomesManager::selectDate()
     return choice;
 }
 
-void IncomesManager::showIncomes(){
+void IncomesManager::showIncome(Income income){
+
+    cout << endl << "Id przychodu............." << to_string(income.getIncomeId()) << endl;
+    cout << "Data dodania przychodu..." << income.getDate() << endl;
+    cout << "Rodzaj przychodu........." << income.getItem() << endl;
+    cout << "Kwota przychodu.........." << income.getAmount() << endl << endl;
+}
+
+void IncomesManager::showCurrentMonthIncomes(){
+
+       vector <Income> currentMonthIncomes;
+
+       for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            if (itr->getDate().substr(0,7) == date.getCurrentMonth()){
+                  currentMonthIncomes.push_back(*itr);
+            }
+        }
+
+        sort(currentMonthIncomes.begin(), currentMonthIncomes.end(), [](Income a, Income b) {
+        return a.getDate() < b.getDate();
+        });
+
+        for (int i=0; i<currentMonthIncomes.size(); i++){
+             showIncome(currentMonthIncomes[i]);
+        }
 
 }
 

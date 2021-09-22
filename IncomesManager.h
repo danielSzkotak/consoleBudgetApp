@@ -21,6 +21,7 @@ class IncomesManager
     Income provideNewIncomeData();
     void sortIncomesByDate();
     char selectDate();
+    void showIncome(Income income);
     Date date;
 
     public:
@@ -31,7 +32,8 @@ class IncomesManager
             };
 
         void addIncome();
-        void showIncomes();
+        void showCurrentMonthIncomes();
+
         double getTotalIncomesAmount();
 
 

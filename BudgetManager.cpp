@@ -41,3 +41,7 @@ void BudgetManager::addExpense(){
     expensesManager ->addExpense();
 }
 
+void BudgetManager::showCurrentMonthBalance(){
+
+    incomesManager -> showCurrentMonthIncomes();
+}

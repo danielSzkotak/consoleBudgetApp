@@ -50,6 +50,11 @@ string Date::getCurrentDate(){
     return s;
 }
 
+string Date::getCurrentMonth(){
+
+    return getCurrentDate().substr(0,7);
+}
+
 string Date::getSelectedDate(){
 
     string inputDate="";
