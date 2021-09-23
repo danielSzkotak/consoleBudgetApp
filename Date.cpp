@@ -62,7 +62,7 @@ string Date::getSelectedDate(){
     while (true)
     {
         inputDate = AuxiliaryMethods::readLine();
-        if (isDateValidFormat(inputDate))
+        if (Date::isDateValidFormat(inputDate))
         {
             return inputDate;
         }

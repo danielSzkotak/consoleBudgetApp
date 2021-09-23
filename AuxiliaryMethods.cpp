@@ -87,4 +87,8 @@ char AuxiliaryMethods::readCharacter()
     return character;
 }
 
+string AuxiliaryMethods::extractYearAndMonthFromDate(string inputDate){
+
+    return inputDate.substr(0,7);
+}
 

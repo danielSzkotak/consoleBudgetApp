@@ -9,6 +9,7 @@
 #include "IncomesFile.h"
 #include "Date.h"
 #include "AuxiliaryMethods.h"
+#include "TextTable.h"
 
 using namespace std;
 
@@ -21,8 +22,10 @@ class IncomesManager
     Income provideNewIncomeData();
     void sortIncomesByDate();
     char selectDate();
-    void showIncome(Income income);
+    vector <Income> getSortedCurrentMonthIncomes();
+    void addIncomeToTheConsoleTable(Income income);
     Date date;
+    TextTable incomesConsoleTable;
 
     public:
         IncomesManager(string incomesFileName, int loggedUserId) :
@@ -33,10 +36,7 @@ class IncomesManager
 
         void addIncome();
         void showCurrentMonthIncomes();
-
         double getTotalIncomesAmount();
-
-
 
 };
 

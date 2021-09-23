@@ -18,6 +18,7 @@ class AuxiliaryMethods
         static double stringToDouble(string number);
         static int stringToInt(string number);
         static char readCharacter();
+        static string extractYearAndMonthFromDate(string inputDate);
 
 };
 
