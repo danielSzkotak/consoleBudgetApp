@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 #include <cstdlib>
 #include "Income.h"
@@ -20,7 +21,6 @@ class IncomesManager
     IncomesFile incomesFile;
     double totalIncomesAmount;
     Income provideNewIncomeData();
-    void sortIncomesByDate();
     char selectDate();
     vector <Income> getSortedCurrentMonthIncomes();
     void addIncomeToTheConsoleTable(Income income);

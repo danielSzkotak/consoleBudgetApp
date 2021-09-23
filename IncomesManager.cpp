@@ -1,5 +1,5 @@
 #include "IncomesManager.h"
-#include <algorithm>
+
 
 
 Income IncomesManager::provideNewIncomeData(){
@@ -29,9 +29,6 @@ Income IncomesManager::provideNewIncomeData(){
 
 }
 
-void IncomesManager::sortIncomesByDate(){
-
-}
 
 void IncomesManager::addIncome(){
 
