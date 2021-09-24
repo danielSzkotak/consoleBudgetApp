@@ -70,7 +70,6 @@ void IncomesManager::addIncomeToTheConsoleTable(Income income){
        incomesConsoleTable.add( income.getItem() );
        incomesConsoleTable.add( AuxiliaryMethods::doubleToString(income.getAmount()) );
        incomesConsoleTable.endOfRow();
-       //t.setAlignment( 2, TextTable::Alignment::RIGHT );
 }
 
 vector <Income> IncomesManager::getSortedCurrentMonthIncomes()
@@ -92,6 +91,25 @@ vector <Income> IncomesManager::getSortedCurrentMonthIncomes()
     return currentMonthIncomes;
 }
 
+vector <Income> IncomesManager::getSortedPreviousMonthIncomes()
+{
+    vector <Income> previousMonthIncomes;
+    for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+    {
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getPreviousMonth())
+        {
+            previousMonthIncomes.push_back(*itr);
+            totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
+        }
+    }
+
+    sort(previousMonthIncomes.begin(), previousMonthIncomes.end(), [](Income a, Income b) {
+        return a.getDate() < b.getDate();
+        });
+
+    return previousMonthIncomes;
+}
+
 
 void IncomesManager::showCurrentMonthIncomes(){
 
@@ -100,18 +118,46 @@ void IncomesManager::showCurrentMonthIncomes(){
 
        sortedCurrentMonthIncomes = getSortedCurrentMonthIncomes();
 
-       cout << endl <<"PRZYCHODY Z BIEZACEGO MIESIACA" << endl;
-       incomesConsoleTable.add( "Id przychodu" );
-       incomesConsoleTable.add( "Data dodania" );
-       incomesConsoleTable.add( "Zrodlo przychodu" );
-       incomesConsoleTable.add( "Kwota" );
-       incomesConsoleTable.endOfRow();
+           cout << endl <<"PRZYCHODY Z BIEZACEGO MIESIACA" << endl;
+           incomesConsoleTable.add( "Id przychodu" );
+           incomesConsoleTable.add( "Data dodania" );
+           incomesConsoleTable.add( "Zrodlo przychodu" );
+           incomesConsoleTable.add( "Kwota" );
+           incomesConsoleTable.endOfRow();
 
-        for (int i=0; i<sortedCurrentMonthIncomes.size(); i++){
-             addIncomeToTheConsoleTable(sortedCurrentMonthIncomes[i]);
-        }
+            for (int i=0; i<sortedCurrentMonthIncomes.size(); i++){
+                 addIncomeToTheConsoleTable(sortedCurrentMonthIncomes[i]);
+            }
 
-       cout << incomesConsoleTable;
+           cout << incomesConsoleTable;
+           if (sortedCurrentMonthIncomes.size() == 0) {
+            cout << "Brak przychodow z biezacego miesiaca" << endl;
+           }
+
+}
+
+void IncomesManager::showPreviousMonthIncomes(){
+
+       vector <Income> sortedPreviousMonthIncomes;
+       totalIncomesAmount = 0;
+
+       sortedPreviousMonthIncomes = getSortedPreviousMonthIncomes();
+
+           cout << endl <<"PRZYCHODY Z POPRZEDNIEGO MIESIACA" << endl;
+           incomesConsoleTable.add( "Id przychodu" );
+           incomesConsoleTable.add( "Data dodania" );
+           incomesConsoleTable.add( "Zrodlo przychodu" );
+           incomesConsoleTable.add( "Kwota" );
+           incomesConsoleTable.endOfRow();
+
+            for (int i=0; i<sortedPreviousMonthIncomes.size(); i++){
+                 addIncomeToTheConsoleTable(sortedPreviousMonthIncomes[i]);
+            }
+
+           cout << incomesConsoleTable;
+           if (sortedPreviousMonthIncomes.size() == 0) {
+            cout << "Brak przychodow z poprzedniego miesiaca" << endl;
+           }
 }
 
 double IncomesManager::getTotalIncomesAmount(){

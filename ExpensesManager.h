@@ -24,6 +24,7 @@ class ExpensesManager
     void sortExpensesByDate();
     char selectDate();
     vector <Expense> getSortedCurrentMonthExpenses();
+    vector <Expense> getSortedPreviousMonthExpenses();
     void addExpenseToTheConsoleTable(Expense expense);
     Date date;
     TextTable expensesConsoleTable;
@@ -37,6 +38,7 @@ class ExpensesManager
 
         void addExpense();
         void showCurrentMonthExpenses();
+        void showPreviousMonthExpenses();
         double getTotalExpensesAmount();
 
 };
