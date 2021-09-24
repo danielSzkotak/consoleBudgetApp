@@ -10,7 +10,8 @@ int main()
     //budgetManager.registerUser();
     budgetManager.logInUser();
     //budgetManager.addIncome();
-    budgetManager.showCurrentMonthBalance();
+    budgetManager.showPreviousMonthBalance();
+    //budgetManager.showCurrentMonthBalance();
 
     return 0;
 }

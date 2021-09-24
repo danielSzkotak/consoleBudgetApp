@@ -63,3 +63,10 @@ void BudgetManager::showCurrentMonthBalance(){
     expensesManager -> showCurrentMonthExpenses();
     showBalance();
 }
+
+void BudgetManager::showPreviousMonthBalance(){
+
+    incomesManager -> showPreviousMonthIncomes();
+    expensesManager -> showPreviousMonthExpenses();
+    showBalance();
+}

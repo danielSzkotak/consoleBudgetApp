@@ -55,6 +55,8 @@ string Date::getCurrentMonth(){
     return getCurrentDate().substr(0,7);
 }
 
+
+
 string Date::getSelectedDate(){
 
     string inputDate="";
@@ -101,6 +103,11 @@ string Date::getDateWithFisrtDayOfPreviousMonth(){
             return to_string(previousYear) + "-12-01";
     }
     return getDateWithFirstDayOfCurrentMonth().replace(5,2, previousMonthStr);
+}
+
+string Date::getPreviousMonth(){
+
+    return getDateWithFisrtDayOfPreviousMonth().substr(0,7);
 }
 
 string Date::getDateWithLastDayOfPreviousMonth(){

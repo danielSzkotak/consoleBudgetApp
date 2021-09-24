@@ -26,6 +26,7 @@ class Date
         string getCurrentDate();
         string getSelectedDate();
         string getCurrentMonth();
+        string getPreviousMonth();
         string getDateWithFirstDayOfCurrentMonth();
         string getDateWithLastDayOfCurrentMonth();
         string getDateWithFisrtDayOfPreviousMonth();
