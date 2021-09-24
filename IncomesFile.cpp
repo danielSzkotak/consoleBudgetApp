@@ -59,8 +59,8 @@ bool IncomesFile::addIncomeToFile(Income income){
         xmlManager.IntoElem();
         xmlManager.AddElem("INCOME");
         xmlManager.IntoElem();
-        xmlManager.AddElem( "incomeId", income.getIncomeId() );
         xmlManager.AddElem( "userId", income.getUserId() );
+        xmlManager.AddElem( "incomeId", income.getIncomeId() );
         xmlManager.AddElem( "date", income.getDate() );
         xmlManager.AddElem( "item", income.getItem() );
         xmlManager.AddElem( "amount", AuxiliaryMethods::doubleToString(income.getAmount()) );

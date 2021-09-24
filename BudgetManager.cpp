@@ -41,3 +41,25 @@ void BudgetManager::addExpense(){
     expensesManager ->addExpense();
 }
 
+void BudgetManager::showBalance(){
+
+       TextTable balance;
+       cout << endl <<"BILANS PRZYCHODOW I ROZCHODOW Z BIEZACEGO MIESIACA" << endl;
+       balance.add( "Suma przychodow" );
+       balance.add( AuxiliaryMethods::doubleToString(incomesManager ->getTotalIncomesAmount()) );
+       balance.endOfRow();
+       balance.add( "Suma rozchodow" );
+       balance.add( AuxiliaryMethods::doubleToString(expensesManager ->getTotalExpensesAmount()) );
+       balance.endOfRow();
+       balance.add( "BILANS" );
+       balance.add( AuxiliaryMethods::doubleToString((incomesManager ->getTotalIncomesAmount()) - (expensesManager ->getTotalExpensesAmount())));
+       balance.endOfRow();
+       cout << balance;
+}
+
+void BudgetManager::showCurrentMonthBalance(){
+
+    incomesManager -> showCurrentMonthIncomes();
+    expensesManager -> showCurrentMonthExpenses();
+    showBalance();
+}

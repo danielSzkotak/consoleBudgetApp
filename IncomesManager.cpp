@@ -1,6 +1,7 @@
 #include "IncomesManager.h"
 
 
+
 Income IncomesManager::provideNewIncomeData(){
 
     Income income;
@@ -19,8 +20,6 @@ Income IncomesManager::provideNewIncomeData(){
          break;
     }
 
-    //income.setDate(date.getCurrentDate());
-
     cout << "Podaj rodzaj przychodu: ";
     income.setItem(AuxiliaryMethods::readLine());
 
@@ -30,9 +29,6 @@ Income IncomesManager::provideNewIncomeData(){
 
 }
 
-void IncomesManager::sortIncomesByDate(){
-
-}
 
 void IncomesManager::addIncome(){
 
@@ -56,7 +52,6 @@ char IncomesManager::selectDate()
 {
     char choice;
 
-
     cout << "WYBIERZ DATE DODANIA PRZYCHODU " << endl;
     cout << "-------------------------------" << endl;
     cout << "1 - Dzisiejsza data" << endl;
@@ -68,11 +63,57 @@ char IncomesManager::selectDate()
     return choice;
 }
 
-void IncomesManager::showIncomes(){
+void IncomesManager::addIncomeToTheConsoleTable(Income income){
 
+       incomesConsoleTable.add( to_string(income.getIncomeId()) );
+       incomesConsoleTable.add( income.getDate() );
+       incomesConsoleTable.add( income.getItem() );
+       incomesConsoleTable.add( AuxiliaryMethods::doubleToString(income.getAmount()) );
+       incomesConsoleTable.endOfRow();
+       //t.setAlignment( 2, TextTable::Alignment::RIGHT );
+}
+
+vector <Income> IncomesManager::getSortedCurrentMonthIncomes()
+{
+    vector <Income> currentMonthIncomes;
+    for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+    {
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getCurrentMonth())
+        {
+            currentMonthIncomes.push_back(*itr);
+            totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
+        }
+    }
+
+    sort(currentMonthIncomes.begin(), currentMonthIncomes.end(), [](Income a, Income b) {
+        return a.getDate() < b.getDate();
+        });
+
+    return currentMonthIncomes;
+}
+
+
+void IncomesManager::showCurrentMonthIncomes(){
+
+       vector <Income> sortedCurrentMonthIncomes;
+       totalIncomesAmount = 0;
+
+       sortedCurrentMonthIncomes = getSortedCurrentMonthIncomes();
+
+       cout << endl <<"PRZYCHODY Z BIEZACEGO MIESIACA" << endl;
+       incomesConsoleTable.add( "Id przychodu" );
+       incomesConsoleTable.add( "Data dodania" );
+       incomesConsoleTable.add( "Zrodlo przychodu" );
+       incomesConsoleTable.add( "Kwota" );
+       incomesConsoleTable.endOfRow();
+
+        for (int i=0; i<sortedCurrentMonthIncomes.size(); i++){
+             addIncomeToTheConsoleTable(sortedCurrentMonthIncomes[i]);
+        }
+
+       cout << incomesConsoleTable;
 }
 
 double IncomesManager::getTotalIncomesAmount(){
-
-
+    return totalIncomesAmount;
 }

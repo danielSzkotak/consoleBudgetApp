@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 #include <cstdlib>
 #include "Income.h"
 #include "IncomesFile.h"
 #include "Date.h"
 #include "AuxiliaryMethods.h"
+#include "TextTable.h"
 
 using namespace std;
 
@@ -19,9 +21,11 @@ class IncomesManager
     IncomesFile incomesFile;
     double totalIncomesAmount;
     Income provideNewIncomeData();
-    void sortIncomesByDate();
     char selectDate();
+    vector <Income> getSortedCurrentMonthIncomes();
+    void addIncomeToTheConsoleTable(Income income);
     Date date;
+    TextTable incomesConsoleTable;
 
     public:
         IncomesManager(string incomesFileName, int loggedUserId) :
@@ -31,10 +35,8 @@ class IncomesManager
             };
 
         void addIncome();
-        void showIncomes();
+        void showCurrentMonthIncomes();
         double getTotalIncomesAmount();
-
-
 
 };
 

@@ -66,11 +66,57 @@ char ExpensesManager::selectDate()
     return choice;
 }
 
-void ExpensesManager::showExpenses(){
+void ExpensesManager::addExpenseToTheConsoleTable(Expense expense){
 
+       expensesConsoleTable.add( to_string(expense.getExpenseId()) );
+       expensesConsoleTable.add( expense.getDate() );
+       expensesConsoleTable.add( expense.getItem() );
+       expensesConsoleTable.add( AuxiliaryMethods::doubleToString(expense.getAmount()) );
+       expensesConsoleTable.endOfRow();
+       //t.setAlignment( 2, TextTable::Alignment::RIGHT );
+}
+
+vector <Expense> ExpensesManager::getSortedCurrentMonthExpenses()
+{
+    vector <Expense> currentMonthExpenses;
+    for (vector <Expense>::iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+    {
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getCurrentMonth())
+        {
+            currentMonthExpenses.push_back(*itr);
+            totalExpensesAmount = totalExpensesAmount + (itr->getAmount());
+        }
+    }
+
+    sort(currentMonthExpenses.begin(), currentMonthExpenses.end(), [](Expense a, Expense b) {
+        return a.getDate() < b.getDate();
+        });
+
+    return currentMonthExpenses;
+}
+
+
+void ExpensesManager::showCurrentMonthExpenses(){
+
+       vector <Expense> sortedCurrentMonthExpenses;
+       totalExpensesAmount = 0;
+
+       sortedCurrentMonthExpenses = getSortedCurrentMonthExpenses();
+
+       cout << endl <<"ROZCHODY Z BIEZACEGO MIESIACA" << endl;
+       expensesConsoleTable.add( "Id rozchodu" );
+       expensesConsoleTable.add( "Data dodania" );
+       expensesConsoleTable.add( "Zrodlo rozchodu" );
+       expensesConsoleTable.add( "Kwota" );
+       expensesConsoleTable.endOfRow();
+
+        for (int i=0; i<sortedCurrentMonthExpenses.size(); i++){
+             addExpenseToTheConsoleTable(sortedCurrentMonthExpenses[i]);
+        }
+
+       cout << expensesConsoleTable;
 }
 
 double ExpensesManager::getTotalExpensesAmount(){
-
-
+    return totalExpensesAmount;
 }

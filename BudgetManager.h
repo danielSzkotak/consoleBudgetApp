@@ -5,6 +5,7 @@
 #include "UserManager.h"
 #include "IncomesManager.h"
 #include "ExpensesManager.h"
+#include "TextTable.h"
 
 
 using namespace std;
@@ -16,6 +17,7 @@ class BudgetManager {
     ExpensesManager *expensesManager;
     const string INCOMES_FILE_NAME;
     const string EXPENSES_FILE_NAME;
+    void showBalance();
 
     public:
         BudgetManager(string usersFileName, string incomesFileName, string expensesFileName) :
@@ -39,6 +41,7 @@ class BudgetManager {
         void showAllUsers();
         void addIncome();
         void addExpense();
+        void showCurrentMonthBalance();
 
 };
 

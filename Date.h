@@ -25,6 +25,7 @@ class Date
         bool isDateValidFormat(string date);
         string getCurrentDate();
         string getSelectedDate();
+        string getCurrentMonth();
         string getDateWithFirstDayOfCurrentMonth();
         string getDateWithLastDayOfCurrentMonth();
         string getDateWithFisrtDayOfPreviousMonth();
