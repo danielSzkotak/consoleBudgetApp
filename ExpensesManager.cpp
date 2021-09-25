@@ -15,7 +15,10 @@ Expense ExpensesManager::provideNewExpenseData(){
 
     case '1': expense.setDate(date.getCurrentDate());
          break;
-    case '2': expense.setDate(date.getSelectedDate());
+    case '2': {
+        cout << "Podaj date w formacie RRRR-MM-DD: ";
+        expense.setDate(date.getSelectedDate());
+    }
          break;
     }
 

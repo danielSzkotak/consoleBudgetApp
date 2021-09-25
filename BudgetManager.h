@@ -43,6 +43,7 @@ class BudgetManager {
         void addExpense();
         void showCurrentMonthBalance();
         void showPreviousMonthBalance();
+        void showSelectedDateBalance();
 
 };
 

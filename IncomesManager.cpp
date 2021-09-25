@@ -1,7 +1,6 @@
 #include "IncomesManager.h"
 
 
-
 Income IncomesManager::provideNewIncomeData(){
 
     Income income;
@@ -16,8 +15,11 @@ Income IncomesManager::provideNewIncomeData(){
 
     case '1': income.setDate(date.getCurrentDate());
          break;
-    case '2': income.setDate(date.getSelectedDate());
+    case '2': {
+         cout << "Podaj date w formacie RRRR-MM-DD: ";
+         income.setDate(date.getSelectedDate());
          break;
+    }
     }
 
     cout << "Podaj rodzaj przychodu: ";
@@ -58,8 +60,8 @@ char IncomesManager::selectDate()
     cout << "2 - Wybrana data" << endl;
 
     cout << endl << "Twoj wybor: ";
+    cin.ignore();
     choice = AuxiliaryMethods::readCharacter();
-
     return choice;
 }
 
@@ -110,6 +112,26 @@ vector <Income> IncomesManager::getSortedPreviousMonthIncomes()
     return previousMonthIncomes;
 }
 
+vector <Income> IncomesManager::getSortedSelectedDateIncomes(string startDate, string endDate)
+{
+    vector <Income> selectedDateIncomes;
+
+    for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+    {
+        if (((itr->getDate()) >= (startDate)) && ((itr->getDate()) <= (endDate)))
+        {
+            selectedDateIncomes.push_back(*itr);
+            totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
+        }
+    }
+
+    sort(selectedDateIncomes.begin(), selectedDateIncomes.end(), [](Income a, Income b) {
+        return a.getDate() < b.getDate();
+        });
+
+    return selectedDateIncomes;
+}
+
 
 void IncomesManager::showCurrentMonthIncomes(){
 
@@ -158,6 +180,39 @@ void IncomesManager::showPreviousMonthIncomes(){
            if (sortedPreviousMonthIncomes.size() == 0) {
             cout << "Brak przychodow z poprzedniego miesiaca" << endl;
            }
+}
+
+void IncomesManager::showSelectedDateIncomes(){
+
+       vector <Income> sortedSelectedDateIncomes;
+       totalIncomesAmount = 0;
+       string startDate ="";
+       string endDate ="";
+
+       cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
+       startDate = date.getSelectedDate();
+        cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
+
+       endDate = date.getSelectedDate();
+
+       sortedSelectedDateIncomes = getSortedSelectedDateIncomes(startDate, endDate);
+
+           cout << endl <<"PRZYCHODY ZE WSKAZANEGO OKRESU" << endl;
+           incomesConsoleTable.add( "Id przychodu" );
+           incomesConsoleTable.add( "Data dodania" );
+           incomesConsoleTable.add( "Zrodlo przychodu" );
+           incomesConsoleTable.add( "Kwota" );
+           incomesConsoleTable.endOfRow();
+
+            for (int i=0; i<sortedSelectedDateIncomes.size(); i++){
+                 addIncomeToTheConsoleTable(sortedSelectedDateIncomes[i]);
+            }
+
+           cout << incomesConsoleTable;
+           if (sortedSelectedDateIncomes.size() == 0) {
+            cout << "Brak przychodow ze wskazanego okresu" << endl;
+           }
+
 }
 
 double IncomesManager::getTotalIncomesAmount(){

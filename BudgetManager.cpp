@@ -70,3 +70,11 @@ void BudgetManager::showPreviousMonthBalance(){
     expensesManager -> showPreviousMonthExpenses();
     showBalance();
 }
+
+void BudgetManager::showSelectedDateBalance(){
+
+    incomesManager ->showSelectedDateIncomes();
+    //expensesManager -> showPreviousMonthExpenses();
+    //showBalance();
+}
+
