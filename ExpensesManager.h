@@ -10,6 +10,7 @@
 #include "ExpensesFile.h"
 #include "Date.h"
 #include "AuxiliaryMethods.h"
+#include "IncomesManager.h"
 #include "TextTable.h"
 
 using namespace std;
@@ -25,6 +26,7 @@ class ExpensesManager
     char selectDate();
     vector <Expense> getSortedCurrentMonthExpenses();
     vector <Expense> getSortedPreviousMonthExpenses();
+    vector <Expense> getSortedSelectedDateExpenses();
     void addExpenseToTheConsoleTable(Expense expense);
     Date date;
     TextTable expensesConsoleTable;
@@ -39,6 +41,7 @@ class ExpensesManager
         void addExpense();
         void showCurrentMonthExpenses();
         void showPreviousMonthExpenses();
+        void showSelectedDateExpenses();
         double getTotalExpensesAmount();
 
 };

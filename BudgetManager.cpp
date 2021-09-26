@@ -14,7 +14,7 @@ void BudgetManager::logInUser(){
     if (userManager.ifUserIsLoggedIn()){
 
         incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId() );
-        expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId() );
+        expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
     }
 
 }
@@ -74,7 +74,7 @@ void BudgetManager::showPreviousMonthBalance(){
 void BudgetManager::showSelectedDateBalance(){
 
     incomesManager ->showSelectedDateIncomes();
-    //expensesManager -> showPreviousMonthExpenses();
+    expensesManager -> showSelectedDateExpenses();
     //showBalance();
 }
 

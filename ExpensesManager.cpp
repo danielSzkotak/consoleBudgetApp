@@ -113,6 +113,26 @@ vector <Expense> ExpensesManager::getSortedPreviousMonthExpenses()
     return previousMonthExpenses;
 }
 
+vector <Expense> ExpensesManager::getSortedSelectedDateExpenses()
+{
+    vector <Expense> selectedDateExpenses;
+
+    for (vector <Expense>::iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+    {
+       if (((itr->getDate()) >= (IncomesManager::getStartDate())) && ((itr->getDate()) <= (IncomesManager::getEndDate())))
+        {
+            selectedDateExpenses.push_back(*itr);
+            totalExpensesAmount = totalExpensesAmount + (itr->getAmount());
+        }
+    }
+
+    sort(selectedDateExpenses.begin(), selectedDateExpenses.end(), [](Expense a, Expense b) {
+        return a.getDate() < b.getDate();
+        });
+
+    return selectedDateExpenses;
+}
+
 void ExpensesManager::showCurrentMonthExpenses(){
 
        vector <Expense> sortedCurrentMonthExpenses;
@@ -160,6 +180,31 @@ void ExpensesManager::showPreviousMonthExpenses(){
             cout << "Brak przychodow z poprzedniego miesiaca" << endl;
            }
 }
+
+void ExpensesManager::showSelectedDateExpenses(){
+
+       vector <Expense> sortedSelectedExpenses;
+       totalExpensesAmount = 0;
+
+       sortedSelectedExpenses = getSortedSelectedDateExpenses();
+
+       cout << endl <<"ROZCHODY ZE WSKAZANEGO OKRESU" << endl;
+       expensesConsoleTable.add( "Id rozchodu" );
+       expensesConsoleTable.add( "Data dodania" );
+       expensesConsoleTable.add( "Zrodlo rozchodu" );
+       expensesConsoleTable.add( "Kwota" );
+       expensesConsoleTable.endOfRow();
+
+        for (int i=0; i<sortedSelectedExpenses.size(); i++){
+             addExpenseToTheConsoleTable(sortedSelectedExpenses[i]);
+        }
+
+       cout << expensesConsoleTable;
+       if (sortedSelectedExpenses.size() == 0) {
+            cout << "Brak przychodow z poprzedniego miesiaca" << endl;
+           }
+}
+
 
 double ExpensesManager::getTotalExpensesAmount(){
     return totalExpensesAmount;

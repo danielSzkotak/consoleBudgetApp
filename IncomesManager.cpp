@@ -1,5 +1,7 @@
 #include "IncomesManager.h"
 
+string IncomesManager::startDate = "";
+string IncomesManager::endDate = "";
 
 Income IncomesManager::provideNewIncomeData(){
 
@@ -112,13 +114,13 @@ vector <Income> IncomesManager::getSortedPreviousMonthIncomes()
     return previousMonthIncomes;
 }
 
-vector <Income> IncomesManager::getSortedSelectedDateIncomes(string startDate, string endDate)
+vector <Income> IncomesManager::getSortedSelectedDateIncomes()
 {
     vector <Income> selectedDateIncomes;
 
     for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
     {
-        if (((itr->getDate()) >= (startDate)) && ((itr->getDate()) <= (endDate)))
+        if (((itr->getDate()) >= (IncomesManager::startDate)) && ((itr->getDate()) <= (IncomesManager::endDate)))
         {
             selectedDateIncomes.push_back(*itr);
             totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
@@ -186,16 +188,14 @@ void IncomesManager::showSelectedDateIncomes(){
 
        vector <Income> sortedSelectedDateIncomes;
        totalIncomesAmount = 0;
-       string startDate ="";
-       string endDate ="";
 
        cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
-       startDate = date.getSelectedDate();
+       IncomesManager::startDate = date.getSelectedDate();
         cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
 
-       endDate = date.getSelectedDate();
+       IncomesManager::endDate = date.getSelectedDate();
 
-       sortedSelectedDateIncomes = getSortedSelectedDateIncomes(startDate, endDate);
+       sortedSelectedDateIncomes = getSortedSelectedDateIncomes();
 
            cout << endl <<"PRZYCHODY ZE WSKAZANEGO OKRESU" << endl;
            incomesConsoleTable.add( "Id przychodu" );
@@ -218,3 +218,13 @@ void IncomesManager::showSelectedDateIncomes(){
 double IncomesManager::getTotalIncomesAmount(){
     return totalIncomesAmount;
 }
+
+    string IncomesManager::getStartDate()
+    {
+
+       return startDate;
+    }
+    string IncomesManager::getEndDate()
+    {
+       return endDate;
+    }
