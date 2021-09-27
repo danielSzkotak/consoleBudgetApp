@@ -12,9 +12,9 @@ int main()
    // budgetManager.addIncome();
    // budgetManager.addExpense();
     //budgetManager.showPreviousMonthBalance();
-    //budgetManager.showCurrentMonthBalance();
+     budgetManager.showCurrentMonthBalance();
 
-     budgetManager.showSelectedDateBalance();
+     //budgetManager.showSelectedDateBalance();
 
     return 0;
 }
