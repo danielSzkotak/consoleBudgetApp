@@ -59,8 +59,9 @@ string Date::getCurrentMonth(){
 
 string Date::getSelectedDate(){
 
+
     string inputDate="";
-    cout << "Wprowadz date przychodu w formacie RRRR-MM-DD (od 2001): ";
+    //cout << "Wprowadz date w formacie RRRR-MM-DD (od 2001): ";
     while (true)
     {
         inputDate = AuxiliaryMethods::readLine();

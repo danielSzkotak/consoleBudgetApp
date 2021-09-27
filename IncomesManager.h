@@ -24,6 +24,7 @@ class IncomesManager
     char selectDate();
     vector <Income> getSortedCurrentMonthIncomes();
     vector <Income> getSortedPreviousMonthIncomes();
+    vector <Income> getSortedSelectedDateIncomes();
     void addIncomeToTheConsoleTable(Income income);
     Date date;
     TextTable incomesConsoleTable;
@@ -34,11 +35,18 @@ class IncomesManager
             {
                 incomes = incomesFile.loadLoggedUserIncomesFromFile(LOGGED_USER_ID);
             };
-
+        static string startDate;
+        static string endDate;
         void addIncome();
         void showCurrentMonthIncomes();
         void showPreviousMonthIncomes();
+        void showSelectedDateIncomes();
         double getTotalIncomesAmount();
+        static string getStartDate();
+        static string getEndDate();
+
+
+
 
 };
 

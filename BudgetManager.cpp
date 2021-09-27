@@ -14,7 +14,7 @@ void BudgetManager::logInUser(){
     if (userManager.ifUserIsLoggedIn()){
 
         incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId() );
-        expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId() );
+        expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
     }
 
 }
@@ -44,7 +44,7 @@ void BudgetManager::addExpense(){
 void BudgetManager::showBalance(){
 
        TextTable balance;
-       cout << endl <<"BILANS PRZYCHODOW I ROZCHODOW Z BIEZACEGO MIESIACA" << endl;
+       cout << endl << "BILANS PRZYCHODOW I ROZCHODOW" << endl;
        balance.add( "Suma przychodow" );
        balance.add( AuxiliaryMethods::doubleToString(incomesManager ->getTotalIncomesAmount()) );
        balance.endOfRow();
@@ -70,3 +70,11 @@ void BudgetManager::showPreviousMonthBalance(){
     expensesManager -> showPreviousMonthExpenses();
     showBalance();
 }
+
+void BudgetManager::showSelectedDateBalance(){
+
+    incomesManager ->showSelectedDateIncomes();
+    expensesManager -> showSelectedDateExpenses();
+    showBalance();
+}
+

@@ -1,6 +1,7 @@
 #include "AuxiliaryMethods.h"
 #include <iomanip>
 
+
 AuxiliaryMethods::AuxiliaryMethods()
 {
     //ctor
@@ -16,7 +17,8 @@ string AuxiliaryMethods::intToString(int number) {
 
 string AuxiliaryMethods::readLine()
 {
-    cin.clear();
+    cin.sync();
+    //cin.ignore();
     string input = "";
     getline(cin, input);
     return input;
@@ -70,21 +72,18 @@ char AuxiliaryMethods::readCharacter()
 {
     string input = "";
     char character = { 0 };
-    cin.ignore();
 
     while (true)
     {
-
         getline(cin, input);
-
         if (input.length() == 1)
         {
             character = input[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+          cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
     }
-    return character;
+   return character;
 }
 
 string AuxiliaryMethods::extractYearAndMonthFromDate(string inputDate){

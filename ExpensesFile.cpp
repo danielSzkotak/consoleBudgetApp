@@ -59,8 +59,8 @@ bool ExpensesFile::addExpenseToFile(Expense expense){
         xmlManager.IntoElem();
         xmlManager.AddElem("EXPENSE");
         xmlManager.IntoElem();
-        xmlManager.AddElem( "expenseId", expense.getExpenseId() );
-        xmlManager.AddElem( "userId", expense.getUserId() );
+        xmlManager.AddElem( "userId", expense.getExpenseId() );
+        xmlManager.AddElem( "expenseId", expense.getUserId() );
         xmlManager.AddElem( "date", expense.getDate() );
         xmlManager.AddElem( "item", expense.getItem() );
         xmlManager.AddElem( "amount", AuxiliaryMethods::doubleToString(expense.getAmount()) );
