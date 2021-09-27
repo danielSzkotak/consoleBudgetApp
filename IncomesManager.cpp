@@ -67,7 +67,7 @@ char IncomesManager::selectDate()
     return choice;
 }
 
-void IncomesManager::addIncomeToTheConsoleTable(Income income){
+void IncomesManager::addIncomeToTheConsoleTable(Income income, TextTable& incomesConsoleTable){
 
        incomesConsoleTable.add( to_string(income.getIncomeId()) );
        incomesConsoleTable.add( income.getDate() );
@@ -139,6 +139,7 @@ void IncomesManager::showCurrentMonthIncomes(){
 
        vector <Income> sortedCurrentMonthIncomes;
        totalIncomesAmount = 0;
+       TextTable incomesConsoleTable;
 
        sortedCurrentMonthIncomes = getSortedCurrentMonthIncomes();
 
@@ -150,12 +151,12 @@ void IncomesManager::showCurrentMonthIncomes(){
            incomesConsoleTable.endOfRow();
 
             for (int i=0; i<sortedCurrentMonthIncomes.size(); i++){
-                 addIncomeToTheConsoleTable(sortedCurrentMonthIncomes[i]);
+                 addIncomeToTheConsoleTable(sortedCurrentMonthIncomes[i], incomesConsoleTable);
             }
 
            cout << incomesConsoleTable;
            if (sortedCurrentMonthIncomes.size() == 0) {
-            cout << "Brak przychodow z biezacego miesiaca" << endl;
+            cout << "Brak przychodow z wybranego okresu" << endl;
            }
 
 }
@@ -164,6 +165,7 @@ void IncomesManager::showPreviousMonthIncomes(){
 
        vector <Income> sortedPreviousMonthIncomes;
        totalIncomesAmount = 0;
+       TextTable incomesConsoleTable;
 
        sortedPreviousMonthIncomes = getSortedPreviousMonthIncomes();
 
@@ -175,12 +177,12 @@ void IncomesManager::showPreviousMonthIncomes(){
            incomesConsoleTable.endOfRow();
 
             for (int i=0; i<sortedPreviousMonthIncomes.size(); i++){
-                 addIncomeToTheConsoleTable(sortedPreviousMonthIncomes[i]);
+                 addIncomeToTheConsoleTable(sortedPreviousMonthIncomes[i], incomesConsoleTable);
             }
 
            cout << incomesConsoleTable;
            if (sortedPreviousMonthIncomes.size() == 0) {
-            cout << "Brak przychodow z poprzedniego miesiaca" << endl;
+            cout << "Brak przychodow z wybranego okresu" << endl;
            }
 }
 
@@ -188,6 +190,7 @@ void IncomesManager::showSelectedDateIncomes(){
 
        vector <Income> sortedSelectedDateIncomes;
        totalIncomesAmount = 0;
+       TextTable incomesConsoleTable;
 
        cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
        IncomesManager::startDate = date.getSelectedDate();
@@ -205,12 +208,12 @@ void IncomesManager::showSelectedDateIncomes(){
            incomesConsoleTable.endOfRow();
 
             for (int i=0; i<sortedSelectedDateIncomes.size(); i++){
-                 addIncomeToTheConsoleTable(sortedSelectedDateIncomes[i]);
+                 addIncomeToTheConsoleTable(sortedSelectedDateIncomes[i], incomesConsoleTable);
             }
 
            cout << incomesConsoleTable;
            if (sortedSelectedDateIncomes.size() == 0) {
-            cout << "Brak przychodow ze wskazanego okresu" << endl;
+            cout << "Brak przychodow z wybranego okresu" << endl;
            }
 
 }
@@ -219,12 +222,13 @@ double IncomesManager::getTotalIncomesAmount(){
     return totalIncomesAmount;
 }
 
-    string IncomesManager::getStartDate()
-    {
+string IncomesManager::getStartDate()
+{
+    return startDate;
+}
 
-       return startDate;
-    }
-    string IncomesManager::getEndDate()
-    {
-       return endDate;
-    }
+string IncomesManager::getEndDate()
+{
+    return endDate;
+}
+

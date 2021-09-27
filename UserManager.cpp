@@ -120,7 +120,7 @@ int UserManager::getLoggedInUserId(){
     return loggedUserId;
 }
 
-bool UserManager::ifUserIsLoggedIn(){
+bool UserManager::isUserLoggedIn(){
 
     if (loggedUserId != 0)
         return true;

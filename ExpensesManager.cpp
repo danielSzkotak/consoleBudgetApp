@@ -66,7 +66,7 @@ char ExpensesManager::selectDate()
     return choice;
 }
 
-void ExpensesManager::addExpenseToTheConsoleTable(Expense expense){
+void ExpensesManager::addExpenseToTheConsoleTable(Expense expense, TextTable& expensesConsoleTable){
 
        expensesConsoleTable.add( to_string(expense.getExpenseId()) );
        expensesConsoleTable.add( expense.getDate() );
@@ -137,6 +137,8 @@ void ExpensesManager::showCurrentMonthExpenses(){
 
        vector <Expense> sortedCurrentMonthExpenses;
        totalExpensesAmount = 0;
+       TextTable expensesConsoleTable;
+
 
        sortedCurrentMonthExpenses = getSortedCurrentMonthExpenses();
 
@@ -148,19 +150,21 @@ void ExpensesManager::showCurrentMonthExpenses(){
        expensesConsoleTable.endOfRow();
 
         for (int i=0; i<sortedCurrentMonthExpenses.size(); i++){
-             addExpenseToTheConsoleTable(sortedCurrentMonthExpenses[i]);
+             addExpenseToTheConsoleTable(sortedCurrentMonthExpenses[i], expensesConsoleTable);
         }
 
        cout << expensesConsoleTable;
        if (sortedCurrentMonthExpenses.size() == 0) {
-            cout << "Brak przychodow z poprzedniego miesiaca" << endl;
+            cout << "Brak rozchodow z wybranego okresu" << endl;
            }
+
 }
 
 void ExpensesManager::showPreviousMonthExpenses(){
 
        vector <Expense> sortedPreviousMonthExpenses;
        totalExpensesAmount = 0;
+       TextTable expensesConsoleTable;
 
        sortedPreviousMonthExpenses = getSortedPreviousMonthExpenses();
 
@@ -172,12 +176,12 @@ void ExpensesManager::showPreviousMonthExpenses(){
        expensesConsoleTable.endOfRow();
 
         for (int i=0; i<sortedPreviousMonthExpenses.size(); i++){
-             addExpenseToTheConsoleTable(sortedPreviousMonthExpenses[i]);
+             addExpenseToTheConsoleTable(sortedPreviousMonthExpenses[i], expensesConsoleTable);
         }
 
        cout << expensesConsoleTable;
        if (sortedPreviousMonthExpenses.size() == 0) {
-            cout << "Brak przychodow z poprzedniego miesiaca" << endl;
+            cout << "Brak rozchodow z wybranego okresu" << endl;
            }
 }
 
@@ -185,6 +189,7 @@ void ExpensesManager::showSelectedDateExpenses(){
 
        vector <Expense> sortedSelectedExpenses;
        totalExpensesAmount = 0;
+       TextTable expensesConsoleTable;
 
        sortedSelectedExpenses = getSortedSelectedDateExpenses();
 
@@ -196,12 +201,12 @@ void ExpensesManager::showSelectedDateExpenses(){
        expensesConsoleTable.endOfRow();
 
         for (int i=0; i<sortedSelectedExpenses.size(); i++){
-             addExpenseToTheConsoleTable(sortedSelectedExpenses[i]);
+             addExpenseToTheConsoleTable(sortedSelectedExpenses[i], expensesConsoleTable);
         }
 
        cout << expensesConsoleTable;
        if (sortedSelectedExpenses.size() == 0) {
-            cout << "Brak przychodow z poprzedniego miesiaca" << endl;
+            cout << "Brak rozchodow z wybranego okresu" << endl;
            }
 }
 
@@ -209,3 +214,5 @@ void ExpensesManager::showSelectedDateExpenses(){
 double ExpensesManager::getTotalExpensesAmount(){
     return totalExpensesAmount;
 }
+
+

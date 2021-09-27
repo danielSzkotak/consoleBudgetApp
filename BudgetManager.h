@@ -37,6 +37,8 @@ class BudgetManager {
 
         void registerUser();
         void logInUser();
+        void logOutUser();
+        bool isUserLoggedIn();
         void changeUserPassword();
         void showAllUsers();
         void addIncome();

@@ -30,7 +30,7 @@ class UserManager
         void registerUser();
         int logInUser();
         int getLoggedInUserId();
-        bool ifUserIsLoggedIn();
+        bool isUserLoggedIn();
         void changeUserPassword();
         void logOutUser();
         void showAllUsers();

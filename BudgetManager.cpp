@@ -8,10 +8,24 @@ void BudgetManager::registerUser(){
 
 }
 
+bool BudgetManager::isUserLoggedIn(){
+
+    return userManager.isUserLoggedIn();
+}
+
+void BudgetManager::logOutUser(){
+
+    userManager.logOutUser();
+    delete incomesManager;
+    delete expensesManager;
+    incomesManager = NULL;
+    expensesManager = NULL;
+}
+
 void BudgetManager::logInUser(){
 
     userManager.logInUser();
-    if (userManager.ifUserIsLoggedIn()){
+    if (userManager.isUserLoggedIn()){
 
         incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId() );
         expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
@@ -55,10 +69,13 @@ void BudgetManager::showBalance(){
        balance.add( AuxiliaryMethods::doubleToString((incomesManager ->getTotalIncomesAmount()) - (expensesManager ->getTotalExpensesAmount())));
        balance.endOfRow();
        cout << balance;
+       system("pause");
+       //incomesManager->killTextTable();
 }
 
 void BudgetManager::showCurrentMonthBalance(){
 
+    system("cls");
     incomesManager -> showCurrentMonthIncomes();
     expensesManager -> showCurrentMonthExpenses();
     showBalance();
@@ -66,6 +83,7 @@ void BudgetManager::showCurrentMonthBalance(){
 
 void BudgetManager::showPreviousMonthBalance(){
 
+    system("cls");
     incomesManager -> showPreviousMonthIncomes();
     expensesManager -> showPreviousMonthExpenses();
     showBalance();
@@ -73,6 +91,7 @@ void BudgetManager::showPreviousMonthBalance(){
 
 void BudgetManager::showSelectedDateBalance(){
 
+    system("cls");
     incomesManager ->showSelectedDateIncomes();
     expensesManager -> showSelectedDateExpenses();
     showBalance();
