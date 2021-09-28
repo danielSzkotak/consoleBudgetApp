@@ -6,7 +6,15 @@
 
 using namespace std;
 
+int Date::month_days[12];
 
+Date::Date(){
+
+            month_days[0] = 31;  month_days[1] = 28;  month_days[2] = 31; month_days[3] = 30;
+            month_days[4] = 31; month_days[5] = 30; month_days[6] = 31; month_days[7] = 31;
+            month_days[8] = 30; month_days[9] = 31; month_days[10] = 30; month_days[11] = 31;
+
+}
 
 bool Date::isLeapYear(int y){
 
@@ -121,11 +129,11 @@ string Date::getDateWithLastDayOfPreviousMonth(){
 
 }
 
-bool Date::ifDatesAreTheSame(string date1, string date2){
+/*bool Date::ifDatesAreTheSame(string date1, string date2){
 
     const char *cDate1 = date1.c_str();
     const char *cDate2 = date2.c_str();
     if (strncmp(cDate1, cDate2, 7) == 0) return true;
     else return false;
-}
+}*/
 

@@ -13,11 +13,11 @@ Expense ExpensesManager::provideNewExpenseData(){
 
     switch (choice){
 
-    case '1': expense.setDate(date.getCurrentDate());
+    case '1': expense.setDate(Date::getCurrentDate());
          break;
     case '2': {
         cout << "Podaj date w formacie RRRR-MM-DD: ";
-        expense.setDate(date.getSelectedDate());
+        expense.setDate(Date::getSelectedDate());
     }
          break;
     }
@@ -80,7 +80,7 @@ vector <Expense> ExpensesManager::getSortedCurrentMonthExpenses()
     vector <Expense> currentMonthExpenses;
     for (vector <Expense>::iterator itr = expenses.begin(); itr != expenses.end(); itr++)
     {
-        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getCurrentMonth())
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getCurrentMonth())
         {
             currentMonthExpenses.push_back(*itr);
             totalExpensesAmount = totalExpensesAmount + (itr->getAmount());
@@ -99,7 +99,7 @@ vector <Expense> ExpensesManager::getSortedPreviousMonthExpenses()
     vector <Expense> previousMonthExpenses;
     for (vector <Expense>::iterator itr = expenses.begin(); itr != expenses.end(); itr++)
     {
-        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getPreviousMonth())
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getPreviousMonth())
         {
             previousMonthExpenses.push_back(*itr);
             totalExpensesAmount = totalExpensesAmount + (itr->getAmount());

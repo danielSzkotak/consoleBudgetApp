@@ -15,11 +15,11 @@ Income IncomesManager::provideNewIncomeData(){
 
     switch (choice){
 
-    case '1': income.setDate(date.getCurrentDate());
+    case '1': income.setDate(Date::getCurrentDate());
          break;
     case '2': {
          cout << "Podaj date w formacie RRRR-MM-DD: ";
-         income.setDate(date.getSelectedDate());
+         income.setDate(Date::getSelectedDate());
          break;
     }
     }
@@ -62,7 +62,6 @@ char IncomesManager::selectDate()
     cout << "2 - Wybrana data" << endl;
 
     cout << endl << "Twoj wybor: ";
-    cin.ignore();
     choice = AuxiliaryMethods::readCharacter();
     return choice;
 }
@@ -81,7 +80,7 @@ vector <Income> IncomesManager::getSortedCurrentMonthIncomes()
     vector <Income> currentMonthIncomes;
     for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
     {
-        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getCurrentMonth())
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getCurrentMonth())
         {
             currentMonthIncomes.push_back(*itr);
             totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
@@ -100,7 +99,7 @@ vector <Income> IncomesManager::getSortedPreviousMonthIncomes()
     vector <Income> previousMonthIncomes;
     for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
     {
-        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == date.getPreviousMonth())
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getPreviousMonth())
         {
             previousMonthIncomes.push_back(*itr);
             totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
@@ -193,10 +192,10 @@ void IncomesManager::showSelectedDateIncomes(){
        TextTable incomesConsoleTable;
 
        cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
-       IncomesManager::startDate = date.getSelectedDate();
+       IncomesManager::startDate = Date::getSelectedDate();
         cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
 
-       IncomesManager::endDate = date.getSelectedDate();
+       IncomesManager::endDate = Date::getSelectedDate();
 
        sortedSelectedDateIncomes = getSortedSelectedDateIncomes();
 

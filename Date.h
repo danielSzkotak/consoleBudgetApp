@@ -9,29 +9,22 @@ class Date
 {
     private:
 
-        int month_days[12];
-        bool isLeapYear(int y);
+        static int month_days[12];
+        static bool isLeapYear(int y);
 
     public:
 
-        Date(){
-
-            month_days[0] = 31;  month_days[1] = 28;  month_days[2] = 31; month_days[3] = 30;
-            month_days[4] = 31; month_days[5] = 30; month_days[6] = 31; month_days[7] = 31;
-            month_days[8] = 30; month_days[9] = 31; month_days[10] = 30; month_days[11] = 31;
-
-        }
-
-        bool isDateValidFormat(string date);
-        string getCurrentDate();
-        string getSelectedDate();
-        string getCurrentMonth();
-        string getPreviousMonth();
-        string getDateWithFirstDayOfCurrentMonth();
-        string getDateWithLastDayOfCurrentMonth();
-        string getDateWithFisrtDayOfPreviousMonth();
-        string getDateWithLastDayOfPreviousMonth();
-        bool ifDatesAreTheSame(string date1, string date2);
+        Date();
+        static bool isDateValidFormat(string date);
+        static string getCurrentDate();
+        static string getSelectedDate();
+        static string getCurrentMonth();
+        static string getPreviousMonth();
+        static string getDateWithFirstDayOfCurrentMonth();
+        static string getDateWithLastDayOfCurrentMonth();
+        static string getDateWithFisrtDayOfPreviousMonth();
+        static string getDateWithLastDayOfPreviousMonth();
+        //bool ifDatesAreTheSame(string date1, string date2);
 
 };
 

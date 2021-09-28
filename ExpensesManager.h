@@ -28,7 +28,6 @@ class ExpensesManager
     vector <Expense> getSortedPreviousMonthExpenses();
     vector <Expense> getSortedSelectedDateExpenses();
     void addExpenseToTheConsoleTable(Expense expense, TextTable& expensesConsoleTable);
-    Date date;
 
     public:
         ExpensesManager(string expensesFileName, int loggedUserId) :
