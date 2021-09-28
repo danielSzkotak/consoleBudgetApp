@@ -17,8 +17,8 @@ string AuxiliaryMethods::intToString(int number) {
 
 string AuxiliaryMethods::readLine()
 {
-    cin.sync();
     //cin.ignore();
+    cin.sync();
     string input = "";
     getline(cin, input);
     return input;
@@ -89,5 +89,15 @@ char AuxiliaryMethods::readCharacter()
 string AuxiliaryMethods::extractYearAndMonthFromDate(string inputDate){
 
     return inputDate.substr(0,7);
+}
+
+string AuxiliaryMethods::convertFirstLetterToApperCaseAndRestToLowerCase(string input){
+
+if (!input.empty())
+    {
+        transform(input.begin(), input.end(), input.begin(), ::tolower);
+        input[0] = toupper(input[0]);
+    }
+    return input;
 }
 

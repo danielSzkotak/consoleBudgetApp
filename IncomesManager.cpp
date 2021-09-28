@@ -99,7 +99,7 @@ vector <Income> IncomesManager::getSortedPreviousMonthIncomes()
     vector <Income> previousMonthIncomes;
     for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
     {
-        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getPreviousMonth())
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getPreviousMonthDate())
         {
             previousMonthIncomes.push_back(*itr);
             totalIncomesAmount = totalIncomesAmount + (itr->getAmount());
@@ -192,10 +192,9 @@ void IncomesManager::showSelectedDateIncomes(){
        TextTable incomesConsoleTable;
 
        cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
-       IncomesManager::startDate = Date::getSelectedDate();
-        cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
-
-       IncomesManager::endDate = Date::getSelectedDate();
+       startDate = Date::getSelectedDate();
+       cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
+       endDate = Date::getSelectedDate();
 
        sortedSelectedDateIncomes = getSortedSelectedDateIncomes();
 

@@ -55,15 +55,11 @@ User UserManager::provideNewUserData(){
     cin >> password;
     user.setPassword(password);
 
-    string name;
     cout << "Podaj Imie: ";
-    cin >> name;
-    user.setName(name);
+    user.setName(AuxiliaryMethods::convertFirstLetterToApperCaseAndRestToLowerCase(AuxiliaryMethods::readLine()));
 
-    string surName;
     cout << "Podaj Nazwisko: ";
-    cin >> surName;
-    user.setSurname(surName);
+    user.setSurname(AuxiliaryMethods::convertFirstLetterToApperCaseAndRestToLowerCase(AuxiliaryMethods::readLine()));
 
     return user;
 }

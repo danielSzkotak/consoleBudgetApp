@@ -6,15 +6,10 @@
 
 using namespace std;
 
-int Date::month_days[12];
+//int Date::month_days[12];
 
-Date::Date(){
 
-            month_days[0] = 31;  month_days[1] = 28;  month_days[2] = 31; month_days[3] = 30;
-            month_days[4] = 31; month_days[5] = 30; month_days[6] = 31; month_days[7] = 31;
-            month_days[8] = 30; month_days[9] = 31; month_days[10] = 30; month_days[11] = 31;
-
-}
+//Date::Date(){}
 
 bool Date::isLeapYear(int y){
 
@@ -25,6 +20,11 @@ bool Date::isLeapYear(int y){
 }
 
 bool Date::isDateValidFormat(string date){
+
+    int month_days[12] = {31,28, 31,30,31,30,31,31,30,31,30,31};
+    //month_days[0] = 31;  month_days[1] = 28;  month_days[2] = 31; month_days[3] = 30;
+    //        month_days[4] = 31; month_days[5] = 30; month_days[6] = 31; month_days[7] = 31;
+     //       month_days[8] = 30; month_days[9] = 31; month_days[10] = 30; month_days[11] = 31;
 
    regex dateFormat("^((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$");
    smatch match;
@@ -64,15 +64,13 @@ string Date::getCurrentMonth(){
 }
 
 
-
 string Date::getSelectedDate(){
 
-
     string inputDate="";
-    //cout << "Wprowadz date w formacie RRRR-MM-DD (od 2001): ";
     while (true)
     {
         inputDate = AuxiliaryMethods::readLine();
+
         if (Date::isDateValidFormat(inputDate))
         {
             return inputDate;
@@ -84,22 +82,8 @@ string Date::getSelectedDate(){
     }
 }
 
-string Date::getDateWithFirstDayOfCurrentMonth(){
 
-    return getCurrentDate().replace(8,2,"01");
-}
-
-string Date::getDateWithLastDayOfCurrentMonth(){
-
-    int currentYear = stoi(getCurrentDate().substr(0,4));
-    int currentMonth = stoi(getCurrentDate().substr(5,2));
-    string lastDayOfCurrentMonth = to_string(month_days[currentMonth-1]);
-    if ((isLeapYear(currentYear)) && (currentMonth == 2)) lastDayOfCurrentMonth = "29";
-    return getCurrentDate().replace(8,2, lastDayOfCurrentMonth);
-}
-
-
-string Date::getDateWithFisrtDayOfPreviousMonth(){
+string Date::getPreviousMonthDate(){
 
     string previousMonthStr="";
     int previousMonth = (stoi(getCurrentDate().substr(5,2))) - 1;
@@ -111,29 +95,11 @@ string Date::getDateWithFisrtDayOfPreviousMonth(){
             int previousYear = stoi(getCurrentDate().substr(0,4))-1;
             return to_string(previousYear) + "-12-01";
     }
-    return getDateWithFirstDayOfCurrentMonth().replace(5,2, previousMonthStr);
+    string previousMontDate = getCurrentDate().replace(5,2, previousMonthStr);
+    return previousMontDate.substr(0,7);
 }
 
-string Date::getPreviousMonth(){
 
-    return getDateWithFisrtDayOfPreviousMonth().substr(0,7);
-}
 
-string Date::getDateWithLastDayOfPreviousMonth(){
 
-    int currentYear = stoi(getDateWithFisrtDayOfPreviousMonth().substr(0,4));
-    int currentMonth = stoi(getDateWithFisrtDayOfPreviousMonth().substr(5,2));
-    string lastDayOfCurrentMonth = to_string(month_days[currentMonth-1]);
-    if ((isLeapYear(currentYear)) && (currentMonth == 2)) lastDayOfCurrentMonth = "29";
-    return getDateWithFisrtDayOfPreviousMonth().replace(8,2, lastDayOfCurrentMonth);
-
-}
-
-/*bool Date::ifDatesAreTheSame(string date1, string date2){
-
-    const char *cDate1 = date1.c_str();
-    const char *cDate2 = date2.c_str();
-    if (strncmp(cDate1, cDate2, 7) == 0) return true;
-    else return false;
-}*/
 

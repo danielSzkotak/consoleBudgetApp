@@ -15,7 +15,7 @@ vector<Expense> expenses;
     xmlManager.Load(getFileName());
     xmlManager.ResetPos();
 
-    if (ifFileExists()) {
+    if (isFileExists()) {
 
         xmlManager.FindElem("EXPENSES");
         xmlManager.IntoElem();

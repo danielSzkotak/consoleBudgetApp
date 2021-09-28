@@ -68,9 +68,8 @@ void BudgetManager::showBalance(){
        balance.add( "BILANS" );
        balance.add( AuxiliaryMethods::doubleToString((incomesManager ->getTotalIncomesAmount()) - (expensesManager ->getTotalExpensesAmount())));
        balance.endOfRow();
-       cout << balance;
+       cout << balance << endl;
        system("pause");
-       //incomesManager->killTextTable();
 }
 
 void BudgetManager::showCurrentMonthBalance(){

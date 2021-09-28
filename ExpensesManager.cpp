@@ -99,7 +99,7 @@ vector <Expense> ExpensesManager::getSortedPreviousMonthExpenses()
     vector <Expense> previousMonthExpenses;
     for (vector <Expense>::iterator itr = expenses.begin(); itr != expenses.end(); itr++)
     {
-        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getPreviousMonth())
+        if (AuxiliaryMethods::extractYearAndMonthFromDate(itr->getDate()) == Date::getPreviousMonthDate())
         {
             previousMonthExpenses.push_back(*itr);
             totalExpensesAmount = totalExpensesAmount + (itr->getAmount());

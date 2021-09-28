@@ -18,7 +18,7 @@ class XmlFile
         XmlFile(string fileName) : FILE_NAME(fileName) {}
 
         string getFileName();
-        bool ifFileExists();
+        bool isFileExists();
 
 
 };

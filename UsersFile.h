@@ -16,7 +16,7 @@ class UsersFile : public XmlFile
 
     public:
         UsersFile(string fileName) : XmlFile(fileName){};
-        void addUserToFile(User user);
+        bool addUserToFile(User user);
         vector<User> getUsersFromFile();
         void saveNewPasswordToFile(string newPassword, int loggedUserId);
 

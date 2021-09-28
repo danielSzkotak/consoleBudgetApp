@@ -7,6 +7,7 @@
 #include "UsersFile.h"
 #include <string>
 #include <cstdlib>
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 

@@ -6,7 +6,7 @@ string XmlFile::getFileName(){
     return FILE_NAME;
 }
 
-bool XmlFile::ifFileExists(){
+bool XmlFile::isFileExists(){
 
     ifstream infile(FILE_NAME);
     return infile.good();

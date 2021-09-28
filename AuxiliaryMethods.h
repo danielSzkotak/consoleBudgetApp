@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <string.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class AuxiliaryMethods
         static int stringToInt(string number);
         static char readCharacter();
         static string extractYearAndMonthFromDate(string inputDate);
+        static string convertFirstLetterToApperCaseAndRestToLowerCase(string input);
 
 };
 

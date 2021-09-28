@@ -3,13 +3,18 @@
 #include "AuxiliaryMethods.h"
 
 
-void UsersFile::addUserToFile(User user){
+bool UsersFile::addUserToFile(User user){
 
-    xmlManager.Load(getFileName());
-    if (!xmlManager.FindElem("USERS")) {
+     //if (!isFileExists()){
+     //   xmlManager.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+    // }
 
-        xmlManager.AddElem("USERS");
-    }
+       xmlManager.Load(getFileName());
+
+       if (!xmlManager.FindElem("USERS")) {
+          xmlManager.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+          xmlManager.AddElem("USERS");
+        }
 
         xmlManager.FindElem("USERS");
         xmlManager.IntoElem();
@@ -20,7 +25,12 @@ void UsersFile::addUserToFile(User user){
         xmlManager.AddElem( "password", user.getPassword() );
         xmlManager.AddElem( "name", user.getName() );
         xmlManager.AddElem( "surname", user.getSurname() );
-        xmlManager.Save(getFileName());
+
+        if(xmlManager.Save(getFileName())){
+            return true;
+        } else {
+            return false;
+        }
 }
 
 vector<User> UsersFile::getUsersFromFile(){
@@ -28,7 +38,7 @@ vector<User> UsersFile::getUsersFromFile(){
     User user;
     vector<User> users;
 
-    if (ifFileExists())
+    if (isFileExists())
     {
         xmlManager.Load(getFileName());
         xmlManager.FindElem("USERS");
@@ -60,7 +70,7 @@ vector<User> UsersFile::getUsersFromFile(){
 void UsersFile::saveNewPasswordToFile(string newPassword, int loggedUserId){
 
     xmlManager.ResetPos();
-    if (ifFileExists()) {
+    if (isFileExists()) {
 
         xmlManager.FindElem();
         xmlManager.IntoElem();

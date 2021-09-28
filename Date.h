@@ -9,7 +9,7 @@ class Date
 {
     private:
 
-        static int month_days[12];
+        //static int month_days[12];
         static bool isLeapYear(int y);
 
     public:
@@ -19,12 +19,7 @@ class Date
         static string getCurrentDate();
         static string getSelectedDate();
         static string getCurrentMonth();
-        static string getPreviousMonth();
-        static string getDateWithFirstDayOfCurrentMonth();
-        static string getDateWithLastDayOfCurrentMonth();
-        static string getDateWithFisrtDayOfPreviousMonth();
-        static string getDateWithLastDayOfPreviousMonth();
-        //bool ifDatesAreTheSame(string date1, string date2);
+        static string getPreviousMonthDate();
 
 };
 
