@@ -191,10 +191,16 @@ void IncomesManager::showSelectedDateIncomes(){
        totalIncomesAmount = 0;
        TextTable incomesConsoleTable;
 
-       cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
-       startDate = Date::getSelectedDate();
-       cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
-       endDate = Date::getSelectedDate();
+       while(true){
+           cout << "Podaj date poczatkowa w formacie RRRR-MM-DD: ";
+           startDate = Date::getSelectedDate();
+           cout << "Podaj date koncowa w formacie RRRR-MM-DD: ";
+           endDate = Date::getSelectedDate();
+           if (endDate < startDate){
+                    cout << endl << "Data koncowa nie moze byc wczesniejsza od poczatkowej, sprobuj jeszcze raz" << endl << endl;
+                    system("Pause");
+           } else break;
+       }
 
        sortedSelectedDateIncomes = getSortedSelectedDateIncomes();
 

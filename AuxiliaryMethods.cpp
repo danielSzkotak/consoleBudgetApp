@@ -27,18 +27,38 @@ string AuxiliaryMethods::readLine()
 
 double AuxiliaryMethods::readDouble()
 {
+
+   regex numberValidation("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
+   smatch match;
+
     cin.sync();
     string input = "";
     double amountInDouble;
-    getline(cin, input);
 
-    for (int i = 0; i < input.length(); i++) {
-        if (input[i] == ',') {
-            input[i] = '.';
+    while(true){
+
+        getline(cin, input);
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input[i] == ',') {
+                input[i] = '.';
+            }
+        }
+
+        if (regex_match(input, match, numberValidation)){
+
+                amountInDouble = stringToDouble(input);
+                return amountInDouble;
+                break;
+
+        } else {
+                cout << endl << "Niepoprawna kwota, wprowadz jeszcze raz: ";
+                //system("pause");
         }
     }
-    amountInDouble = stringToDouble(input);
-    return amountInDouble;
+
+    //amountInDouble = stringToDouble(input);
+    //return amountInDouble;
 }
 
 

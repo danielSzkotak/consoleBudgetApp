@@ -21,10 +21,7 @@ bool Date::isLeapYear(int y){
 
 bool Date::isDateValidFormat(string date){
 
-    int month_days[12] = {31,28, 31,30,31,30,31,31,30,31,30,31};
-    //month_days[0] = 31;  month_days[1] = 28;  month_days[2] = 31; month_days[3] = 30;
-    //        month_days[4] = 31; month_days[5] = 30; month_days[6] = 31; month_days[7] = 31;
-     //       month_days[8] = 30; month_days[9] = 31; month_days[10] = 30; month_days[11] = 31;
+   int month_days[12] = {31,28, 31,30,31,30,31,31,30,31,30,31};
 
    regex dateFormat("^((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$");
    smatch match;
