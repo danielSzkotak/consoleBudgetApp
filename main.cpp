@@ -6,24 +6,17 @@ using namespace std;
 char selectOptionFromMainMenu();
 char selectOptionFromUserMenu();
 
-int main()
-{
+int main() {
 
     BudgetManager budgetManager("users.xml", "incomes.xml", "expenses.xml");
 
     char choice {0};
-    cin.clear();
-    cin.sync();
 
-
-    while (true)
-    {
-        if (!budgetManager.isUserLoggedIn())
-        {
+    while (true) {
+        if (!budgetManager.isUserLoggedIn()) {
             choice = selectOptionFromMainMenu();
 
-            switch (choice)
-            {
+            switch (choice) {
             case '1':
                 budgetManager.registerUser();
                 break;
@@ -38,13 +31,12 @@ int main()
                 system("pause");
                 break;
             }
-        }
-        else {
+        } else {
 
             choice = selectOptionFromUserMenu();
 
-            switch (choice)
-            {
+
+            switch (choice) {
             case '1':
                 budgetManager.addIncome();
                 break;
@@ -71,11 +63,14 @@ int main()
     }
 }
 
-char selectOptionFromMainMenu()
-{
+char selectOptionFromMainMenu() {
     char choice {0};
 
     system("cls");
+    cout << "---------------------------" << endl;
+    cout << "  PERSONAL BUDGET MANAGER  " << endl;
+    cout << "---------------------------" << endl;
+
     cout << "    >>> MENU  GLOWNE <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Rejestracja" << endl;
@@ -85,20 +80,21 @@ char selectOptionFromMainMenu()
     cout << "Twoj wybor: ";
 
     choice = AuxiliaryMethods::readCharacter();
-
     return choice;
 }
 
-char selectOptionFromUserMenu()
-{
+char selectOptionFromUserMenu() {
     char choice;
 
     system("cls");
+    cout << "---------------------------" << endl;
+    cout << "  PERSONAL BUDGET MANAGER  " << endl;
+    cout << "---------------------------" << endl;
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj przychod" << endl;
     cout << "2. Dodaj wydatek" << endl;
-    cout << "3. Pokaz bilans biezacego miesiaca" << endl;
+    cout << "3. Pokaz bilans z biezacego miesiaca" << endl;
     cout << "4. Pokaz bilans z poprzedniego miesiaca" << endl;
     cout << "5. Pokaz bilans z wybranego okresu" << endl;
     cout << "---------------------------" << endl;
@@ -106,7 +102,9 @@ char selectOptionFromUserMenu()
     cout << "7. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
+
     choice = AuxiliaryMethods::readCharacter();
+
 
     return choice;
 }

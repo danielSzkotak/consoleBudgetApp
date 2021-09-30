@@ -12,16 +12,15 @@
 #include "AuxiliaryMethods.h"
 #include "TextTable.h"
 
+
 using namespace std;
 
-class IncomesManager
-{
+class IncomesManager {
     const int LOGGED_USER_ID;
     vector<Income> incomes;
     IncomesFile incomesFile;
     double totalIncomesAmount;
     Income provideNewIncomeData();
-    char selectDate();
     vector <Income> getSortedCurrentMonthIncomes();
     vector <Income> getSortedPreviousMonthIncomes();
     vector <Income> getSortedSelectedDateIncomes();
@@ -29,20 +28,19 @@ class IncomesManager
     static string startDate;
     static string endDate;
 
-    public:
-        IncomesManager(string incomesFileName, int loggedUserId) :
-            incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserId)
-            {
-                incomes = incomesFile.loadLoggedUserIncomesFromFile(LOGGED_USER_ID);
-            };
+public:
+    IncomesManager(string incomesFileName, int loggedUserId) :
+        incomesFile(incomesFileName), LOGGED_USER_ID(loggedUserId) {
+        incomes = incomesFile.loadLoggedUserIncomesFromFile(LOGGED_USER_ID);
+    };
 
-        void addIncome();
-        void showCurrentMonthIncomes();
-        void showPreviousMonthIncomes();
-        void showSelectedDateIncomes();
-        double getTotalIncomesAmount();
-        static string getStartDate();
-        static string getEndDate();
+    void addIncome();
+    void showCurrentMonthIncomes();
+    void showPreviousMonthIncomes();
+    void showSelectedDateIncomes();
+    double getTotalIncomesAmount();
+    static string getStartDate();
+    static string getEndDate();
 
 
 };

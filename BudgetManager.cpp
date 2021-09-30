@@ -1,19 +1,19 @@
 #include "BudgetManager.h"
 #include "UserManager.h"
+#include <iomanip>
 
 
-void BudgetManager::registerUser(){
+void BudgetManager::registerUser() {
 
     userManager.registerUser();
-
 }
 
-bool BudgetManager::isUserLoggedIn(){
+bool BudgetManager::isUserLoggedIn() {
 
     return userManager.isUserLoggedIn();
 }
 
-void BudgetManager::logOutUser(){
+void BudgetManager::logOutUser() {
 
     userManager.logOutUser();
     delete incomesManager;
@@ -22,10 +22,10 @@ void BudgetManager::logOutUser(){
     expensesManager = NULL;
 }
 
-void BudgetManager::logInUser(){
+void BudgetManager::logInUser() {
 
     userManager.logInUser();
-    if (userManager.isUserLoggedIn()){
+    if (userManager.isUserLoggedIn()) {
 
         incomesManager = new IncomesManager(INCOMES_FILE_NAME, userManager.getLoggedInUserId() );
         expensesManager = new ExpensesManager(EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
@@ -33,66 +33,62 @@ void BudgetManager::logInUser(){
 
 }
 
-void BudgetManager::changeUserPassword(){
+void BudgetManager::changeUserPassword() {
 
     userManager.changeUserPassword();
 }
 
-void BudgetManager::showAllUsers(){
 
-    userManager.showAllUsers();
-
-}
-
-void BudgetManager::addIncome(){
+void BudgetManager::addIncome() {
 
     incomesManager ->addIncome();
 }
 
 
-void BudgetManager::addExpense(){
+void BudgetManager::addExpense() {
 
     expensesManager ->addExpense();
 }
 
-void BudgetManager::showBalance(){
+void BudgetManager::showSummaryBalance() {
 
-       TextTable balance;
-       cout << endl << "BILANS PRZYCHODOW I ROZCHODOW" << endl;
-       balance.add( "Suma przychodow" );
-       balance.add( AuxiliaryMethods::doubleToString(incomesManager ->getTotalIncomesAmount()) );
-       balance.endOfRow();
-       balance.add( "Suma rozchodow" );
-       balance.add( AuxiliaryMethods::doubleToString(expensesManager ->getTotalExpensesAmount()) );
-       balance.endOfRow();
-       balance.add( "BILANS" );
-       balance.add( AuxiliaryMethods::doubleToString((incomesManager ->getTotalIncomesAmount()) - (expensesManager ->getTotalExpensesAmount())));
-       balance.endOfRow();
-       cout << balance << endl;
-       system("pause");
+    TextTable balance;
+    cout << endl << "BILANS PRZYCHODOW I ROZCHODOW" << endl;
+    balance.add( "Suma przychodow" );
+    balance.add( AuxiliaryMethods::doubleToString(incomesManager ->getTotalIncomesAmount()) );
+    balance.endOfRow();
+    balance.add( "Suma rozchodow" );
+    balance.add( AuxiliaryMethods::doubleToString(expensesManager ->getTotalExpensesAmount()) );
+    balance.endOfRow();
+    balance.add( "BILANS" );
+    balance.add( AuxiliaryMethods::doubleToString((incomesManager ->getTotalIncomesAmount()) - (expensesManager ->getTotalExpensesAmount())));
+    balance.endOfRow();
+
+    cout << balance << endl;
+    system("pause");
 }
 
-void BudgetManager::showCurrentMonthBalance(){
+void BudgetManager::showCurrentMonthBalance() {
 
     system("cls");
     incomesManager -> showCurrentMonthIncomes();
     expensesManager -> showCurrentMonthExpenses();
-    showBalance();
+    showSummaryBalance();
 }
 
-void BudgetManager::showPreviousMonthBalance(){
+void BudgetManager::showPreviousMonthBalance() {
 
     system("cls");
     incomesManager -> showPreviousMonthIncomes();
     expensesManager -> showPreviousMonthExpenses();
-    showBalance();
+    showSummaryBalance();
 }
 
-void BudgetManager::showSelectedDateBalance(){
+void BudgetManager::showSelectedDateBalance() {
 
     system("cls");
     incomesManager ->showSelectedDateIncomes();
     expensesManager -> showSelectedDateExpenses();
-    showBalance();
+    showSummaryBalance();
 }
 

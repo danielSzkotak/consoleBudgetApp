@@ -2,8 +2,7 @@
 #include <iomanip>
 
 
-AuxiliaryMethods::AuxiliaryMethods()
-{
+AuxiliaryMethods::AuxiliaryMethods() {
     //ctor
 }
 
@@ -15,9 +14,8 @@ string AuxiliaryMethods::intToString(int number) {
     return str;
 }
 
-string AuxiliaryMethods::readLine()
-{
-    //cin.ignore();
+string AuxiliaryMethods::readLine() {
+
     cin.sync();
     string input = "";
     getline(cin, input);
@@ -25,17 +23,16 @@ string AuxiliaryMethods::readLine()
 
 }
 
-double AuxiliaryMethods::readDouble()
-{
+double AuxiliaryMethods::readDouble() {
 
-   regex numberValidation("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
-   smatch match;
+    regex numberValidation("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
+    smatch match;
 
     cin.sync();
     string input = "";
     double amountInDouble;
 
-    while(true){
+    while(true) {
 
         getline(cin, input);
 
@@ -45,20 +42,17 @@ double AuxiliaryMethods::readDouble()
             }
         }
 
-        if (regex_match(input, match, numberValidation)){
+        if (regex_match(input, match, numberValidation)) {
 
-                amountInDouble = stringToDouble(input);
-                return amountInDouble;
-                break;
+            amountInDouble = stringToDouble(input);
+            return amountInDouble;
+            break;
 
         } else {
-                cout << endl << "Niepoprawna kwota, wprowadz jeszcze raz: ";
-                //system("pause");
+            cout << endl << "Niepoprawna kwota, wprowadz jeszcze raz: ";
         }
     }
 
-    //amountInDouble = stringToDouble(input);
-    //return amountInDouble;
 }
 
 
@@ -73,13 +67,14 @@ double AuxiliaryMethods::stringToDouble(string number) {
 string AuxiliaryMethods::doubleToString (double number) {
 
     ostringstream strs;
+    strs << std::fixed;
+    strs << std::setprecision(2);
     strs << number;
-    setprecision(2);
     string numberDouble = strs.str();
     return numberDouble;
 }
 
-int AuxiliaryMethods::stringToInt(string number){
+int AuxiliaryMethods::stringToInt(string number) {
 
     int input;
     istringstream iss(number);
@@ -88,33 +83,42 @@ int AuxiliaryMethods::stringToInt(string number){
     return input;
 }
 
-char AuxiliaryMethods::readCharacter()
-{
+char AuxiliaryMethods::readCharacter() {
+
     string input = "";
     char character = { 0 };
 
-    while (true)
-    {
+    while (true) {
         getline(cin, input);
-        if (input.length() == 1)
-        {
+        if (input.length() == 1) {
             character = input[0];
             break;
         }
-          cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
     }
-   return character;
+
+    return character;
+
 }
 
-string AuxiliaryMethods::extractYearAndMonthFromDate(string inputDate){
+char AuxiliaryMethods::selectDate() {
 
-    return inputDate.substr(0,7);
+    char choice;
+
+    cout << "WYBIERZ DATE DODANIA PRZYCHODU " << endl;
+    cout << "-------------------------------" << endl;
+    cout << "1 - Dzisiejsza data" << endl;
+    cout << "2 - Wybrana data" << endl;
+
+    cout << endl << "Twoj wybor: ";
+    choice = AuxiliaryMethods::readCharacter();
+    return choice;
+
 }
 
-string AuxiliaryMethods::convertFirstLetterToApperCaseAndRestToLowerCase(string input){
+string AuxiliaryMethods::convertFirstLetterToApperCaseAndRestToLowerCase(string input) {
 
-if (!input.empty())
-    {
+    if (!input.empty()) {
         transform(input.begin(), input.end(), input.begin(), ::tolower);
         input[0] = toupper(input[0]);
     }

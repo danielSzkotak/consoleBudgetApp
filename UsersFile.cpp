@@ -5,10 +5,6 @@
 
 bool UsersFile::addUserToFile(User user){
 
-     //if (!isFileExists()){
-     //   xmlManager.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-    // }
-
        xmlManager.Load(getFileName());
 
        if (!xmlManager.FindElem("USERS")) {
@@ -26,11 +22,9 @@ bool UsersFile::addUserToFile(User user){
         xmlManager.AddElem( "name", user.getName() );
         xmlManager.AddElem( "surname", user.getSurname() );
 
-        if(xmlManager.Save(getFileName())){
-            return true;
-        } else {
-            return false;
-        }
+        if(xmlManager.Save(getFileName())) return true;
+        else return false;
+
 }
 
 vector<User> UsersFile::getUsersFromFile(){

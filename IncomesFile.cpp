@@ -1,17 +1,15 @@
 #include "IncomesFile.h"
 
+int IncomesFile::getLastIncomeId() {
 
-int IncomesFile::getLastIncomeId(){
-
- return lastIncomeId;
+    return lastIncomeId;
 }
 
-vector<Income> IncomesFile::loadLoggedUserIncomesFromFile(int loggedUserId){
+vector<Income> IncomesFile::loadLoggedUserIncomesFromFile(int loggedUserId) {
 
-Income income;
-vector<Income> incomes;
+    Income income;
+    vector<Income> incomes;
 
-    string dane = "";
     xmlManager.Load(getFileName());
     xmlManager.ResetPos();
 
@@ -47,29 +45,27 @@ vector<Income> incomes;
 
 }
 
-bool IncomesFile::addIncomeToFile(Income income){
+bool IncomesFile::addIncomeToFile(Income income) {
 
     xmlManager.Load(getFileName());
-    if (!xmlManager.FindElem("INCOMES")) {
 
+    if (!xmlManager.FindElem("INCOMES")) {
+        xmlManager.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xmlManager.AddElem("INCOMES");
     }
 
-        xmlManager.FindElem("INCOMES");
-        xmlManager.IntoElem();
-        xmlManager.AddElem("INCOME");
-        xmlManager.IntoElem();
-        xmlManager.AddElem( "userId", income.getUserId() );
-        xmlManager.AddElem( "incomeId", income.getIncomeId() );
-        xmlManager.AddElem( "date", income.getDate() );
-        xmlManager.AddElem( "item", income.getItem() );
-        xmlManager.AddElem( "amount", AuxiliaryMethods::doubleToString(income.getAmount()) );
+    xmlManager.FindElem("INCOMES");
+    xmlManager.IntoElem();
+    xmlManager.AddElem("INCOME");
+    xmlManager.IntoElem();
+    xmlManager.AddElem( "userId", income.getUserId() );
+    xmlManager.AddElem( "incomeId", income.getIncomeId() );
+    xmlManager.AddElem( "date", income.getDate() );
+    xmlManager.AddElem( "item", income.getItem() );
+    xmlManager.AddElem( "amount", AuxiliaryMethods::doubleToString(income.getAmount()) );
 
-        lastIncomeId++;
+    lastIncomeId++;
 
-        if(xmlManager.Save(getFileName())){
-            return true;
-        } else {
-            return false;
-        }
+    if(xmlManager.Save(getFileName())) return true;
+    else return false;
 }

@@ -22,8 +22,6 @@ class ExpensesManager
     ExpensesFile expensesFile;
     double totalExpensesAmount;
     Expense provideNewExpenseData();
-    void sortExpensesByDate();
-    char selectDate();
     vector <Expense> getSortedCurrentMonthExpenses();
     vector <Expense> getSortedPreviousMonthExpenses();
     vector <Expense> getSortedSelectedDateExpenses();

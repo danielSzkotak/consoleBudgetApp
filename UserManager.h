@@ -34,7 +34,6 @@ class UserManager
         bool isUserLoggedIn();
         void changeUserPassword();
         void logOutUser();
-        void showAllUsers();
 
 };
 

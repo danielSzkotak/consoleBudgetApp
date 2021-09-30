@@ -1,17 +1,16 @@
 #include "ExpensesFile.h"
 
 
-int ExpensesFile::getLastExpenseId(){
+int ExpensesFile::getLastExpenseId() {
 
- return lastExpenseId;
+    return lastExpenseId;
 }
 
-vector<Expense> ExpensesFile::loadLoggedUserExpensesFromFile(int loggedUserId){
+vector<Expense> ExpensesFile::loadLoggedUserExpensesFromFile(int loggedUserId) {
 
-Expense expense;
-vector<Expense> expenses;
+    Expense expense;
+    vector<Expense> expenses;
 
-    string dane = "";
     xmlManager.Load(getFileName());
     xmlManager.ResetPos();
 
@@ -47,29 +46,27 @@ vector<Expense> expenses;
 
 }
 
-bool ExpensesFile::addExpenseToFile(Expense expense){
+bool ExpensesFile::addExpenseToFile(Expense expense) {
 
     xmlManager.Load(getFileName());
-    if (!xmlManager.FindElem("EXPENSES")) {
 
+    if (!xmlManager.FindElem("EXPENSES")) {
+        xmlManager.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xmlManager.AddElem("EXPENSES");
     }
 
-        xmlManager.FindElem("EXPENSES");
-        xmlManager.IntoElem();
-        xmlManager.AddElem("EXPENSE");
-        xmlManager.IntoElem();
-        xmlManager.AddElem( "userId", expense.getExpenseId() );
-        xmlManager.AddElem( "expenseId", expense.getUserId() );
-        xmlManager.AddElem( "date", expense.getDate() );
-        xmlManager.AddElem( "item", expense.getItem() );
-        xmlManager.AddElem( "amount", AuxiliaryMethods::doubleToString(expense.getAmount()) );
+    xmlManager.FindElem("EXPENSES");
+    xmlManager.IntoElem();
+    xmlManager.AddElem("EXPENSE");
+    xmlManager.IntoElem();
+    xmlManager.AddElem( "userId", expense.getUserId() );
+    xmlManager.AddElem( "expenseId", expense.getExpenseId() );
+    xmlManager.AddElem( "date", expense.getDate() );
+    xmlManager.AddElem( "item", expense.getItem() );
+    xmlManager.AddElem( "amount", AuxiliaryMethods::doubleToString(expense.getAmount()) );
 
-        lastExpenseId++;
+    lastExpenseId++;
 
-        if(xmlManager.Save(getFileName())){
-            return true;
-        } else {
-            return false;
-        }
+    if(xmlManager.Save(getFileName())) return true;
+    else return false;
 }

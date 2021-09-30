@@ -2,7 +2,7 @@
 #include "UsersFile.h"
 
 
-void UserManager::registerUser(){
+void UserManager::registerUser() {
 
 
     User user = provideNewUserData();
@@ -14,7 +14,7 @@ void UserManager::registerUser(){
 
 }
 
-bool UserManager::ifLoginExists(string login){
+bool UserManager::ifLoginExists(string login) {
 
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getLogin() == login) {
@@ -27,7 +27,7 @@ bool UserManager::ifLoginExists(string login){
     return false;
 }
 
-int UserManager::getNewUserId(){
+int UserManager::getNewUserId() {
 
     if (users.empty() == true)
         return 1;
@@ -35,14 +35,13 @@ int UserManager::getNewUserId(){
         return users.back().getUserId() + 1;
 }
 
-User UserManager::provideNewUserData(){
+User UserManager::provideNewUserData() {
 
     User user;
     user.setUserId(getNewUserId());
     string login;
 
-    do
-    {
+    do {
         cout << "Podaj login: ";
         cin >> login;
         user.setLogin(login);
@@ -64,19 +63,8 @@ User UserManager::provideNewUserData(){
     return user;
 }
 
-void UserManager::showAllUsers(){
 
-    for (int i = 0; i < users.size(); i++) {
-
-        cout << users[i].getUserId() << endl;
-        cout << users[i].getLogin() << endl;
-        cout << users[i].getPassword() << endl;
-        cout << users[i].getName() << endl;
-        cout << users[i].getSurname() << endl << endl;
-    }
-}
-
-int UserManager::logInUser(){
+int UserManager::logInUser() {
 
     string login = "", passwd = "";
 
@@ -87,13 +75,11 @@ int UserManager::logInUser(){
 
         if (users[i].getLogin() == login) {
 
-            for (int numberOfAttempts = 3; numberOfAttempts > 0; numberOfAttempts--)
-            {
+            for (int numberOfAttempts = 3; numberOfAttempts > 0; numberOfAttempts--) {
                 cout << "Podaj haslo. Pozostalo prob: " << numberOfAttempts << ": ";
                 cin >> passwd; //passwd = MetodyPomocnicze::wczytajLinie();
 
-                if (users[i].getPassword() == passwd)
-                {
+                if (users[i].getPassword() == passwd) {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     return loggedUserId = users[i].getUserId();
@@ -111,12 +97,12 @@ int UserManager::logInUser(){
     return 0;
 }
 
-int UserManager::getLoggedInUserId(){
+int UserManager::getLoggedInUserId() {
 
     return loggedUserId;
 }
 
-bool UserManager::isUserLoggedIn(){
+bool UserManager::isUserLoggedIn() {
 
     if (loggedUserId != 0)
         return true;
@@ -124,17 +110,15 @@ bool UserManager::isUserLoggedIn(){
         return false;
 }
 
-void UserManager::changeUserPassword(){
+void UserManager::changeUserPassword() {
 
     string newPassword = "";
     cout << " >>> ZMIANA HASLA <<<" << endl << endl;
     cout << "Podaj nowe haslo: ";
     cin >> newPassword;
 
-    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
-    {
-        if (itr->getUserId() == loggedUserId)
-        {
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
+        if (itr->getUserId() == loggedUserId) {
             itr->setPassword(newPassword);
             cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
@@ -145,7 +129,7 @@ void UserManager::changeUserPassword(){
 
 }
 
-void UserManager::logOutUser(){
+void UserManager::logOutUser() {
 
     loggedUserId = 0;
     cout << "Wylogowales sie" << endl << endl;

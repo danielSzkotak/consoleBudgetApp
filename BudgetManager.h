@@ -17,7 +17,7 @@ class BudgetManager {
     ExpensesManager *expensesManager;
     const string INCOMES_FILE_NAME;
     const string EXPENSES_FILE_NAME;
-    void showBalance();
+    void showSummaryBalance();
 
     public:
         BudgetManager(string usersFileName, string incomesFileName, string expensesFileName) :
