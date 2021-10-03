@@ -76,15 +76,17 @@ string Date::getPreviousMonthDate() {
     string previousMonthStr="";
     int previousMonth = (stoi(getCurrentDate().substr(5,2))) - 1;
 
+
     if (previousMonth > 9) previousMonthStr = to_string(previousMonth);
-    if (previousMonth < 9 && previousMonth != 0) previousMonthStr = "0" + to_string(previousMonth);
+    if (previousMonth <= 9 && previousMonth != 0) previousMonthStr = "0" + to_string(previousMonth);
     if (previousMonth == 0) {
 
         int previousYear = stoi(getCurrentDate().substr(0,4))-1;
         return to_string(previousYear) + "-12-01";
     }
-    string previousMontDate = getCurrentDate().replace(5,2, previousMonthStr);
-    return previousMontDate;
+    string previousMonthDate = getCurrentDate().replace(5,2, previousMonthStr);
+    return previousMonthDate;
+
 }
 
 
